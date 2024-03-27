@@ -22,7 +22,7 @@ public class MoveControls : MonoBehaviour
         }   
         if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(Vector3.back * Time.deltaTime * speed);
+            transform.Translate(Vector3.down * Time.deltaTime * speed);
         }
         if (Input.GetKey(KeyCode.A))
         {
