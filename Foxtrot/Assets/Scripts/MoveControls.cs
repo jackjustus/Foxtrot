@@ -18,7 +18,7 @@ public class MoveControls : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            transform.Translate(Vector3.up * Time.deltaTime * speed);
         }   
         if (Input.GetKey(KeyCode.S))
         {
