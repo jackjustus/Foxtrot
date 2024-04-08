@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.PlayerSettings;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -26,12 +27,13 @@ public class EnemyAI : MonoBehaviour
     // Jump & ground collision stuff
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool m_Grounded;            // Whether or not the player is grounded.
-    private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
-
     bool jump = false;
 
+    // Player Targeting
+    Vector2 enemyToPlayer;
+    Vector2 unitToPlayer;
 
     [Header("Events")]
     [Space]
@@ -71,11 +73,11 @@ public class EnemyAI : MonoBehaviour
             Vector3 pos = transform.position;
 
             // Creating a unit vector from the player to the enemy
-            Vector2 enemyToPlayer = (pos - player.position);
-            Vector2 unitToPlayer = enemyToPlayer.normalized;
-
+            enemyToPlayer = (pos - player.position);
+            unitToPlayer = enemyToPlayer.normalized;
 
             float distanceToPlayer = enemyToPlayer.magnitude;
+
 
             // Move towards the player if within detection range
             if (distanceToPlayer <= detectionRange)
@@ -96,7 +98,7 @@ public class EnemyAI : MonoBehaviour
             }
             else
             {
-                rb.velocity = Vector2.zero;
+                // Enemy is outside detection range
             }
         } else
         {
@@ -152,10 +154,11 @@ public class EnemyAI : MonoBehaviour
     {
 
 
+        Debug.print(unitToPlayer.x);
 
 
         // Move the character by finding the target velocity
-        Vector3 targetVelocity = new Vector2(move * 10f, rb.velocity.y);
+        Vector3 targetVelocity = new Vector2(move * unitToPlayer.x * 10f, rb.velocity.y);
         // And then smoothing it out and applying it to the character
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
@@ -181,7 +184,7 @@ public class EnemyAI : MonoBehaviour
         {
             // Add a vertical force to the player.
             m_Grounded = false;
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            rb.AddForce(new Vector2(0f, m_JumpForce));
         }
     }
 
