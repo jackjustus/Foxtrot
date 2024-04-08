@@ -6,9 +6,12 @@ using UnityEngine.Events;
 public class EnemyAI : MonoBehaviour
 {
 
-    public float enemySpeed = 60f;
-    public float detectionRange = 200f;
-    public float jumpRange = 50f;
+    [Header("Enemy Constants")]
+    [Space]
+
+    [SerializeField] private float enemySpeed = 60f;
+    [SerializeField] private float detectionRange = 200f;
+    [SerializeField] private float jumpRange = 50f;
     private Transform player;
     private Rigidbody2D rb;
 
@@ -18,8 +21,9 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
-   
 
+
+    // Jump & ground collision stuff
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool m_Grounded;            // Whether or not the player is grounded.
     private Rigidbody2D m_Rigidbody2D;
@@ -38,8 +42,6 @@ public class EnemyAI : MonoBehaviour
     public class BoolEvent : UnityEvent<bool> { }
 
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -52,15 +54,10 @@ public class EnemyAI : MonoBehaviour
     private void Awake()
     {
 
-        rb = GetComponent<Rigidbody2D>();
-
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
 
-    
     }
-
-
 
 
     // Update is called once per frame
@@ -68,19 +65,22 @@ public class EnemyAI : MonoBehaviour
     {
 
 
-
-
-
-
         if (player != null)
         {
-            Vector2 direction = (player.position - transform.position).normalized;
-            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+            Vector3 pos = transform.position;
+
+            // Creating a unit vector from the player to the enemy
+            Vector2 enemyToPlayer = (pos - player.position);
+            Vector2 unitToPlayer = enemyToPlayer.normalized;
+
+
+            float distanceToPlayer = enemyToPlayer.magnitude;
 
             // Move towards the player if within detection range
             if (distanceToPlayer <= detectionRange)
             {
-                
+
 
                 // Perform attack or other actions when within attack range
                 if (distanceToPlayer <= jumpRange)
@@ -98,6 +98,9 @@ public class EnemyAI : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
             }
+        } else
+        {
+            Debug.print("BIG ERROR: ENEMY PLAYER DOESNT EXIST");
         }
 
 
@@ -132,7 +135,7 @@ public class EnemyAI : MonoBehaviour
             }
         }
 
-        
+
 
     }
 
@@ -148,8 +151,8 @@ public class EnemyAI : MonoBehaviour
     public void Move(float move, bool jump)
     {
 
-        
-        
+
+
 
         // Move the character by finding the target velocity
         Vector3 targetVelocity = new Vector2(move * 10f, rb.velocity.y);
@@ -172,7 +175,7 @@ public class EnemyAI : MonoBehaviour
 
 
 
-        
+
         // If the player should jump...
         if (m_Grounded && jump)
         {
