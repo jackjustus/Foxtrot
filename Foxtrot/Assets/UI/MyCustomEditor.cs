@@ -15,8 +15,7 @@ public class MyCustomEditor : EditorWindow
     private VisualTreeAsset m_UXMLTree;
 
     // The VisualTreeAsset is a template for a visual tree. It is a serialized representation of a visual tree.
-    [SerializeField]
-    private VisualTreeAsset m_VisualTreeAsset = default;
+
 
     private int m_ClickCount = 0;
 
