@@ -55,11 +55,20 @@ public class CharacterController2D : MonoBehaviour
 				m_Grounded = true;
 				if (!wasGrounded)
 					OnLandEvent.Invoke();
+
+				if (colliders[i].gameObject.CompareTag("Slope"))
+				{
+                    //get the angle of the slope
+					float angle = Vector2.Angle(colliders[i].transform.up, Vector2.up);
+					//print the angle of the slope
+					print(angle);
+                }
 			}
 		}
 	}
 
 
+	
 	public void Move(float move, bool jump)
 	{
 
