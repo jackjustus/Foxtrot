@@ -2820,7 +2820,7 @@ GameObject:
   - component: {fileID: 1854823122}
   - component: {fileID: 1854823121}
   m_Layer: 7
-  m_Name: AttackArea
+  m_Name: ForwardAttackArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
