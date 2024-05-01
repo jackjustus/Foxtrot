@@ -9,4 +9,14 @@ public class GameController : MonoBehaviour
     public void incrementButtonCounter() {
         buttonCounter++;
     }
+
+    public void startGame() {
+
+
+    }
+
+    public void exitGame() {
+        Debug.print("Exiting game...");
+        Application.Quit();
+    }
 }
