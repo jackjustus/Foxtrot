@@ -19,6 +19,5 @@ public class GameController : MonoBehaviour
         Debug.print("Exiting game...");
         Application.Quit();
     }
-    // tes
     
 }
