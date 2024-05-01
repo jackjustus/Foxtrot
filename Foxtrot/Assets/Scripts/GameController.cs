@@ -10,6 +10,11 @@ public class GameController : MonoBehaviour
         buttonCounter++;
     }
 
+    public void loadScene(int sceneNumber) {
+
+        
+    }
+
     public void startGame() {
 
 
