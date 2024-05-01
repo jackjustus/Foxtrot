@@ -88,7 +88,7 @@ public class EnemyAI : MonoBehaviour
                 if (distanceToPlayer <= maxJumpRange && distanceToPlayer >= minJumpRange)
                 {
                     // Perform attack action here
-                    print("jump");
+                
                     jump = true;
                 }
 
