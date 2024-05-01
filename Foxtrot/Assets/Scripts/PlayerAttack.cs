@@ -9,7 +9,7 @@ public class PlayerAttack : MonoBehaviour
 
     private bool attacking = false;
 
-    private float timeToAttack = 0.25f;
+    private float timeToAttack = .25f;
     private float timer = 0f;
 
     // Start is called before the first frame update
@@ -21,9 +21,10 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             Attack();
+            
         }
 
         if (attacking)
@@ -40,6 +41,7 @@ public class PlayerAttack : MonoBehaviour
     }
     private void Attack()
     {
+        UnityEngine.Debug.Log("Attacking");
         attacking = true;
         attackArea.SetActive(attacking);
     }
