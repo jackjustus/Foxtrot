@@ -16,6 +16,7 @@ public class MainMenu : MonoBehaviour
     {
         HideMenu();
         ShowLoadingScreen();
+        
         scenesToLoad.Add(SceneManager.LoadSceneAsync("Gameplay"));
         scenesToLoad.Add(SceneManager.LoadSceneAsync("Stage0", LoadSceneMode.Additive));
 
