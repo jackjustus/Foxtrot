@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
 
     private GameObject forwardAttackArea = default;
+    private GameObject upAttackArea = default;
 
     private bool attacking = false;
 
@@ -16,17 +17,28 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         forwardAttackArea = transform.GetChild(0).gameObject;
+        upAttackArea = transform.GetChild(1).gameObject; 
     }
 
     // Update is called once per frame
     void Update()
     {
         
-
-        if (Input.GetButtonDown("Attack"))
+        if(Input.GetAxisRaw("Vertical") !=0)
         {
-            Attack();
+            if (Input.GetButtonDown("Attack"))
+            {
+                UpAttack();
+            }
         }
+        if(Input.GetAxisRaw("Vertical") == 0)
+        {
+            if (Input.GetButtonDown("Attack"))
+            {
+                ForwardAttack();
+            }
+        }
+        
 
         if (attacking)
         {
@@ -37,13 +49,23 @@ public class PlayerAttack : MonoBehaviour
                 timer = 0;
                 attacking = false;
                 forwardAttackArea.SetActive(attacking);
+                upAttackArea.SetActive(attacking);
+                
             }
         }
     }
-    private void Attack()
+    private void ForwardAttack()
     {
         
         attacking = true;
         forwardAttackArea.SetActive(attacking);
     }
+
+    private void UpAttack()
+    {
+
+        attacking = true;
+        upAttackArea.SetActive(attacking);
+    }
+
 }

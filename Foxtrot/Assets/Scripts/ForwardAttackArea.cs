@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ForwardAttackArea : MonoBehaviour
 {
-    private int damage = 3;
+    private int damage = 2;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
