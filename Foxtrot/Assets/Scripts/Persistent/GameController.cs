@@ -9,27 +9,16 @@ public class GameController : MonoBehaviour
 
     public string currentScene {get; private set;} 
 
-
     List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
+
+    void Awake() {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     public void standardLoadNextLevel(string sceneName)
     {
-        List<Scene> openScenes = getScenes(); // Getting a list of all open scenes
-        for (int i = 0; i < openScenes.Count; i++)
-        {
-            // If the target scene is already open, log an error and return
-            if (openScenes[i].name == sceneName)
-            {
-                Debug.LogError("Scene already loaded");
-                return;
-            } else if (openScenes[i].name != "Gameplay" || openScenes[i].name != "GameController") // If the scene is not the Gameplay or GameController scene, unload it
-            {
-                Debug.Log("Unloading scene: " + openScenes[i].name);
-                unloadScene(openScenes[i].name);
-            }
-        }
         // If the target scene is not open, load it
-        scenesToLoad.Add(SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive));
+        scenesToLoad.Add(SceneManager.LoadSceneAsync(sceneName));
     }
 
     public void loadScene(string sceneName) {
@@ -39,8 +28,9 @@ public class GameController : MonoBehaviour
 
     public void unloadScene(string sceneName)
     {
-        AsyncOperation sceneToUnload = SceneManager.UnloadSceneAsync(sceneName);
-        scenesToLoad.Remove(sceneToUnload);
+        // AsyncOperation sceneToUnload = SceneManager.UnloadSceneAsync(sceneName);
+        // scenesToLoad.Remove(sceneToUnload);
+        SceneManager.UnloadSceneAsync(sceneName);
     }
 
     public void exitGame()
