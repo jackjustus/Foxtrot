@@ -26,34 +26,38 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
 
-        
-        
+        bool facingRight = GetComponent<CharacterController2D>().getFacingRight();
+        bool movingRight = Input.GetAxisRaw("Horizontal") == 1;
+        bool isGrounded = GetComponent<CharacterController2D>().isGrounded();
+
+        bool movingForward = (facingRight && movingRight) || (!facingRight && !movingRight);
+        bool movingBackward = (facingRight && !movingRight) || (!facingRight && movingRight);
         //write an if statment that runs if the player is grounded using the getGrounded or isGrounded function from the CharacterController2D script
-        if(GetComponent<CharacterController2D>().isGrounded() == false)
+        if (!isGrounded)
         {
-            if( (GetComponent<CharacterController2D>().getFacingRight() == true && Input.GetAxisRaw("Horizontal") == -1) || (GetComponent<CharacterController2D>().getFacingRight()==false && Input.GetAxisRaw("Horizontal")==1))
+            if (!movingForward && Input.GetAxisRaw("Horizontal") != 0)
             {
                 if (Input.GetButtonDown("Attack"))
                 {
                     BackwardAttack();
                 }
             }
-            
+
         }
-        
-        
-            
 
 
 
-        if (Input.GetAxisRaw("Vertical") !=0)
+
+
+
+        if (Input.GetAxisRaw("Vertical") != 0 && (movingForward || Input.GetAxisRaw("Horizontal") ==0))
         {
             if (Input.GetButtonDown("Attack"))
             {
                 UpAttack();
             }
         }
-        if(Input.GetAxisRaw("Vertical") == 0)
+        if(Input.GetAxisRaw("Vertical") == 0 && (movingForward || Input.GetAxisRaw("Horizontal") == 0))
         {
             if (Input.GetButtonDown("Attack"))
             {
