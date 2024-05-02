@@ -29,4 +29,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Persistent/Gameplay.unity
     guid: 6061e769e5d264b2aa7b2cd9b4ee2cf2
+  - enabled: 1
+    path: Assets/Scenes/Chapter 0/Introduction.unity
+    guid: 62ab1308f68504af88a24185a1c417ef
+  - enabled: 1
+    path: Assets/Scenes/Chapter 0/MeadowWalk.unity
+    guid: 3555db43262514ca7a54b1add15e6349
   m_configObjects: {}
