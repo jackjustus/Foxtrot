@@ -17,4 +17,10 @@ public class Debug : MonoBehaviour
     {
         
     }
+
+    public static void Log(string message)
+    {
+        UnityEngine.Debug.Log(message);
+    }
+
 }
