@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthManager : MonoBehaviour
+public class Health : MonoBehaviour
 {
 
-    [SerializeField] private int health { get; set; }
+    [SerializeField] private int health = 5;
 
     private int MAX_HEALTH = 5;
 
@@ -16,6 +16,8 @@ public class HealthManager : MonoBehaviour
     private void Update()
     {
     
+        
+
         
         if (Input.GetKeyDown(KeyCode.H))
         {
