@@ -23,4 +23,9 @@ public class Debug : MonoBehaviour
         UnityEngine.Debug.Log(message);
     }
 
+    public static void LogError(string message)
+    {
+        UnityEngine.Debug.LogError(message);
+    }
+
 }
