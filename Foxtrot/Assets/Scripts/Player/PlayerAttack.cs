@@ -7,6 +7,7 @@ public class PlayerAttack : MonoBehaviour
 
     private GameObject forwardAttackArea = default;
     private GameObject upAttackArea = default;
+    private GameObject backAttackArea = default;
 
     private bool attacking = false;
 
@@ -18,13 +19,34 @@ public class PlayerAttack : MonoBehaviour
     {
         forwardAttackArea = transform.GetChild(0).gameObject;
         upAttackArea = transform.GetChild(1).gameObject; 
+        backAttackArea=transform.GetChild(2).gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         
-        if(Input.GetAxisRaw("Vertical") !=0)
+        
+        //write an if statment that runs if the player is grounded using the getGrounded or isGrounded function from the CharacterController2D script
+        if(GetComponent<CharacterController2D>().isGrounded() == false)
+        {
+            if( (GetComponent<CharacterController2D>().getFacingRight() == true && Input.GetAxisRaw("Horizontal") == -1) || (GetComponent<CharacterController2D>().getFacingRight()==false && Input.GetAxisRaw("Horizontal")==1))
+            {
+                if (Input.GetButtonDown("Attack"))
+                {
+                    BackwardAttack();
+                }
+            }
+            
+        }
+        
+        
+            
+
+
+
+        if (Input.GetAxisRaw("Vertical") !=0)
         {
             if (Input.GetButtonDown("Attack"))
             {
@@ -40,6 +62,25 @@ public class PlayerAttack : MonoBehaviour
         }
         
 
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
         if (attacking)
         {
             timer+=Time.deltaTime;
@@ -50,6 +91,7 @@ public class PlayerAttack : MonoBehaviour
                 attacking = false;
                 forwardAttackArea.SetActive(attacking);
                 upAttackArea.SetActive(attacking);
+                backAttackArea.SetActive(attacking);
                 
             }
         }
@@ -66,6 +108,12 @@ public class PlayerAttack : MonoBehaviour
 
         attacking = true;
         upAttackArea.SetActive(attacking);
+    }
+
+    private void BackwardAttack()
+    {
+        attacking = true;
+        backAttackArea.SetActive(attacking);
     }
 
 }
