@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] GameObject blackScreen;
+    public void sceneAnimation() {
+        // Play the scene transition animation
+        Debug.Log("[UICNTRL] Playing scene transition animation...");
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
