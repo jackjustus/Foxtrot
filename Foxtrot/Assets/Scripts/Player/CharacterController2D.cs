@@ -3,7 +3,14 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
-    [SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
+    
+    [SerializeField] private float jumpForce = 18f; // The force applied when the player jumps
+    [SerializeField] private float fallSpeed = 4f; // The maximum time the player can hold the jump button to jump higher
+
+
+    private bool isJumping = false;
+
+
     [Range(0, .3f)][SerializeField] private float m_MovementSmoothing = .05f;   // How much to smooth out the movement
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
 
@@ -19,13 +26,19 @@ public class CharacterController2D : MonoBehaviour
     private bool m_FacingRight = true;                                          // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
 
-    
-    bool movingRight = false;
-    
 
+    //provides a small window of time where the player can jump after falling off a platform
+    private float coyoteTime = 0.1f;
+    private float coyoteTimer; 
+
+    bool movingRight = false;
     bool movingForward = false;
 
 
+
+    
+   
+    
 
 
     [Header("Events")]
@@ -55,6 +68,33 @@ public class CharacterController2D : MonoBehaviour
         bool wasGrounded = m_Grounded;
         m_Grounded = false;
 
+
+
+        if (isGrounded())
+        {
+            coyoteTimer = coyoteTime;
+        }
+        else if(m_Rigidbody2D.velocity.y >0)
+        {
+            coyoteTimer = 0;
+        }
+        else
+        {
+            coyoteTimer -= Time.fixedDeltaTime;
+        }
+
+
+
+        if (!Input.GetButton("Jump") && !isJumping && m_Rigidbody2D.velocity.y>0)
+        {
+            
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_Rigidbody2D.velocity.y - fallSpeed);
+            
+            
+        }
+
+
+
     }
 
     private void Update()
@@ -62,7 +102,34 @@ public class CharacterController2D : MonoBehaviour
 
         movingRight = Input.GetAxisRaw("Horizontal") == 1;
         movingForward = (m_FacingRight && movingRight) || (!m_FacingRight && !movingRight);
+
+
+        if (Input.GetButtonDown("Jump") && (isGrounded() || coyoteTimer > 0))
+        {
+            isJumping = true;
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, jumpForce);
+            if (coyoteTimer >= 0 && coyoteTimer < coyoteTime)
+            {
+                UnityEngine.Debug.Log("Coyote Time: " + coyoteTimer);
+            }
+        }
+
+        if (Input.GetButtonUp("Jump"))
+        {
+            isJumping = false;
+        }
+
+
+        
+            
+
+
+
+
+
+
     }
+
 
 
     public void Move(float move, bool jump)
@@ -91,6 +158,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
+                
                 // If the input is moving the player right and the player is facing left...
                 if (move > 0 && !m_FacingRight)
                 {
@@ -114,12 +182,7 @@ public class CharacterController2D : MonoBehaviour
 
         }
         // If the player should jump...
-        if (isGrounded() && jump)
-        {
-            // Add a vertical force to the player.
-            m_Grounded = false;
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-        }
+        
     }
 
     public bool isGrounded()
