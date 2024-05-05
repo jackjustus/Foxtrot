@@ -2310,7 +2310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5a163540e6040469f40326bbd57b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffect: 0.7
+  parallaxEffect: 0.5
 --- !u!1 &740537482
 GameObject:
   m_ObjectHideFlags: 0
@@ -2410,7 +2410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5a163540e6040469f40326bbd57b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffect: 0.5
+  parallaxEffect: 0.4
 --- !u!1 &759638782
 GameObject:
   m_ObjectHideFlags: 0
@@ -6282,8 +6282,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0, y: -0.00000011920929, z: 0}
-    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+    m_Center: {x: -0.00024998188, y: -0.000100016594, z: 0}
+    m_Extent: {x: 1.00045, y: 1.0009, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
