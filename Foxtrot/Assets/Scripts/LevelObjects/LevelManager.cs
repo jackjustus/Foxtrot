@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     private GameObject gameController;
     private string sceneName;
 
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");

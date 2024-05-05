@@ -12,15 +12,23 @@ public class Parallax : MonoBehaviour
     void Start()
     {
         cam = GameObject.FindGameObjectWithTag("MainCamera");
-        startpos = cam.transform.position.x;
+        // startpos = cam.transform.position.x;
         length = GetComponent<SpriteRenderer>().bounds.size.x;
-        
+    
+    }
+
+    public void LevelLoaded() {
+
     }
 
     void FixedUpdate()
     {
-        float dist = (cam.transform.position.x * parallaxEffect);
+        float distanceTraveled = cam.transform.position.x * (1 - parallaxEffect);
+        float parallaxDistance = cam.transform.position.x * parallaxEffect;
 
-        transform.position = new Vector3(startpos + dist, transform.position.y, transform.position.z);
+        transform.position = new Vector3(startpos + parallaxDistance, transform.position.y, transform.position.z);
+
+        if (distanceTraveled > startpos + length) startpos += length;
+        else if (distanceTraveled < startpos - length) startpos -= length;
     }
 }
