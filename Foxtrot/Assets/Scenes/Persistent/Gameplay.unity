@@ -487,29 +487,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 18
   fallSpeed: 4
+  coyoteBuffer: 0.1
   m_MovementSmoothing: 0.05
-  m_AirControl: 1
-  m_WhatIsGround:
+  AirControlEnabled: 0
+  whatIsGround:
     serializedVersion: 2
     m_Bits: 2048
   boxSize: {x: 1.15, y: 0.36}
   castDistance: 0.48
+  isGrounded: 0
   OnLandEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &512971989

@@ -109,7 +109,7 @@ public class CharacterController2D : MonoBehaviour
         if (jump && coyoteTimer > 0)
         {
             isJumping = true;
-            targetVelocity += new Vector3(0 , jumpForce, 0);
+            Rigidbody2D.velocity = new Vector2(Rigidbody2D.velocity.x, jumpForce);
 
             /* Uncomment to see the coyote timer in the console
             if (coyoteTimer >= 0 && coyoteTimer < coyoteBuffer)
