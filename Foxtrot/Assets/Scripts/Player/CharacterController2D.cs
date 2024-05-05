@@ -111,22 +111,25 @@ public class CharacterController2D : MonoBehaviour
             isJumping = true;
             Rigidbody2D.velocity = new Vector2(Rigidbody2D.velocity.x, jumpForce);
 
-            /* Uncomment to see the coyote timer in the console
+            // Uncomment to see the coyote timer in the console
             if (coyoteTimer >= 0 && coyoteTimer < coyoteBuffer)
             {
                 Debug.Log("Coyote Time: " + coyoteTimer);
             }
-            */
+            
         }
+
+        // Smoothing out the target velocity and applying it to the player
+        Rigidbody2D.velocity = Vector3.SmoothDamp(Rigidbody2D.velocity, targetVelocity, ref velocity, m_MovementSmoothing);
 
 
         // The player can only move if grounded or airControl is turned on
         // The second part of the or logic is very iffy
-        if (isGrounded || (isSpeedingUpX && AirControlEnabled))
+        if (isGrounded || AirControlEnabled)
         {
 
-            // Smoothing out the target velocity and applying it to the player
-            Rigidbody2D.velocity = Vector3.SmoothDamp(Rigidbody2D.velocity, targetVelocity, ref velocity, m_MovementSmoothing);
+            
+            
 
 
             // If the input is moving the player right and the player is facing left...
@@ -142,8 +145,7 @@ public class CharacterController2D : MonoBehaviour
                 Flip();
             }
         }
-        else if (!isGrounded && !isSpeedingUpX)
-            Rigidbody2D.velocity = Vector3.SmoothDamp(Rigidbody2D.velocity, targetVelocity, ref velocity, m_MovementSmoothing + 0.1f);
+        
         
     }
 
