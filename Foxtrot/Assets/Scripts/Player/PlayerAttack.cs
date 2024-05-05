@@ -28,7 +28,7 @@ public class PlayerAttack : MonoBehaviour
 
         bool facingRight = GetComponent<CharacterController2D>().getFacingRight();
         bool movingRight = Input.GetAxisRaw("Horizontal") == 1;
-        bool isGrounded = GetComponent<CharacterController2D>().isGrounded();
+        bool isGrounded = GetComponent<CharacterController2D>().isGrounded;
 
         bool movingForward = (facingRight && movingRight) || (!facingRight && !movingRight);
         bool movingBackward = (facingRight && !movingRight) || (!facingRight && movingRight);
