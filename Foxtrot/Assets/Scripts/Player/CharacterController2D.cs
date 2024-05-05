@@ -88,8 +88,6 @@ public class CharacterController2D : MonoBehaviour
         isSpeedingUpX = (isFacingRight && isAcceleratingRight) || (!isFacingRight && !isAcceleratingRight);
 
 
-
-
         // The player is no longer jumping if the jump button is released or the player is grounded
         if (Input.GetButtonUp("Jump") || isGrounded)
             isJumping = false;
@@ -124,13 +122,8 @@ public class CharacterController2D : MonoBehaviour
 
 
         // The player can only move if grounded or airControl is turned on
-        // The second part of the or logic is very iffy
         if (isGrounded || AirControlEnabled)
         {
-
-            
-            
-
 
             // If the input is moving the player right and the player is facing left...
             if (move > 0 && !isFacingRight)
