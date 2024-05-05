@@ -88,20 +88,7 @@ public class CharacterController2D : MonoBehaviour
         isSpeedingUpX = (isFacingRight && isAcceleratingRight) || (!isFacingRight && !isAcceleratingRight);
 
 
-        // Jump logic
-        // The player is able to jump if coyoteTimer is greater than 0
-        if (Input.GetButtonDown("Jump") && (coyoteTimer > 0))
-        {
-            isJumping = true;
-            Rigidbody2D.velocity = new Vector2(Rigidbody2D.velocity.x, jumpForce);
 
-            /* Uncomment to see the coyote timer in the console
-            if (coyoteTimer >= 0 && coyoteTimer < coyoteBuffer)
-            {
-                Debug.Log("Coyote Time: " + coyoteTimer);
-            }
-            */
-        }
 
         // The player is no longer jumping if the jump button is released or the player is grounded
         if (Input.GetButtonUp("Jump") || isGrounded)
@@ -114,9 +101,23 @@ public class CharacterController2D : MonoBehaviour
     {
         // This method is called by PlayerMovement.cs
 
-        
         // The target velocity is the player's current velocity with the new movement input
         Vector3 targetVelocity = new Vector2(move * 10f, Rigidbody2D.velocity.y);
+
+
+        // The player is able to jump if coyoteTimer is greater than 0
+        if (jump && coyoteTimer > 0)
+        {
+            isJumping = true;
+            targetVelocity += new Vector3(0 , jumpForce, 0);
+
+            /* Uncomment to see the coyote timer in the console
+            if (coyoteTimer >= 0 && coyoteTimer < coyoteBuffer)
+            {
+                Debug.Log("Coyote Time: " + coyoteTimer);
+            }
+            */
+        }
 
 
         // The player can only move if grounded or airControl is turned on
