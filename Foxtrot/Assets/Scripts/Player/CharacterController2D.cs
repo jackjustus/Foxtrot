@@ -80,7 +80,7 @@ public class CharacterController2D : MonoBehaviour
 
     }
 
-
+    
     private void Update()
     {
         // Updating movement booleans
@@ -93,6 +93,8 @@ public class CharacterController2D : MonoBehaviour
             isJumping = false;
 
     }
+    
+
 
 
     public void Move(float move, bool jump)
