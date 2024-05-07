@@ -72,7 +72,6 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        
         UnityEngine.Debug.Log("I am Dead");
         Destroy(gameObject);
     }
