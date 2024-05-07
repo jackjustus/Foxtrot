@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour
 
 
 
-    public GameObject player;
+    private GameObject player;
     private PlayerMovement1 bool_script;
    
    
@@ -33,6 +33,8 @@ public class PlayerAttack : MonoBehaviour
         forwardAttackArea = transform.GetChild(0).gameObject;
         upAttackArea = transform.GetChild(1).gameObject; 
         backAttackArea=transform.GetChild(2).gameObject;
+
+        player = GameObject.FindGameObjectWithTag("Player");
 
         bool_script = player.GetComponent<PlayerMovement1>();
     }
