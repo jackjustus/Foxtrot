@@ -278,10 +278,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5482087246442780766, guid: 98f796d7b67ce244e8b05caa8b1134d6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 625820156}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98f796d7b67ce244e8b05caa8b1134d6, type: 3}
 --- !u!1 &507533006
 GameObject:
@@ -492,25 +489,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 589030401}
   m_CullTransparentMesh: 1
---- !u!1 &625820150 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5482087246442780766, guid: 98f796d7b67ce244e8b05caa8b1134d6, type: 3}
-  m_PrefabInstance: {fileID: 114200385}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &625820156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 625820150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9f0d65960c7f4bc7a36d97db786d388, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 5
-  currentHealth: 5
 --- !u!1 &718272722
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +499,7 @@ GameObject:
   m_Component:
   - component: {fileID: 718272724}
   - component: {fileID: 718272723}
+  - component: {fileID: 718272725}
   m_Layer: 0
   m_Name: UIController
   m_TagString: Untagged
@@ -540,7 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 670f0278b346b4f6c8ace7c97bc9d968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blackScreen: {fileID: 0}
+  blackScreen: {fileID: 794921148}
 --- !u!4 &718272724
 Transform:
   m_ObjectHideFlags: 0
@@ -553,9 +532,22 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1753544950}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &718272725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718272722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb9bb0ab6c98148bea5d0ac51b82f373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &794921148
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,7 +632,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -824,7 +816,7 @@ RectTransform:
   m_Children:
   - {fileID: 48129668}
   - {fileID: 794921149}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 718272724}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -842,6 +834,7 @@ GameObject:
   - component: {fileID: 1874738568}
   - component: {fileID: 1874738567}
   - component: {fileID: 1874738566}
+  - component: {fileID: 1874738569}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -899,6 +892,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1874738569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874738565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb9bb0ab6c98148bea5d0ac51b82f373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2038158069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,18 +1101,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 122831426533476545, guid: ebef2d30ac11e4c039d340025844b57e, type: 3}
-      propertyPath: m_BiasY
-      value: -0.47
-      objectReference: {fileID: 0}
-    - target: {fileID: 122831426533476545, guid: ebef2d30ac11e4c039d340025844b57e, type: 3}
-      propertyPath: m_ScreenY
-      value: 0.6999999
-      objectReference: {fileID: 0}
-    - target: {fileID: 122831426533476545, guid: ebef2d30ac11e4c039d340025844b57e, type: 3}
-      propertyPath: m_DeadZoneHeight
-      value: 0.37
-      objectReference: {fileID: 0}
     - target: {fileID: 6022440080418676952, guid: ebef2d30ac11e4c039d340025844b57e, type: 3}
       propertyPath: m_Name
       value: Virtual Camera
@@ -1171,4 +1164,3 @@ SceneRoots:
   - {fileID: 6119208961445103428}
   - {fileID: 1874738568}
   - {fileID: 718272724}
-  - {fileID: 1753544950}

@@ -10,42 +10,37 @@ public class GameController : MonoBehaviour
     public string currentScene {get; private set;} 
 
     List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
+    
+    UIController UIController;
+    GameObject player;
 
-    void Awake() {
-        DontDestroyOnLoad(this.gameObject);
-    }
-
-    public void standardLoadNextLevel(string sceneName)
+    void Awake()
     {
+        UIController = FindObjectOfType<UIController>();
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+    public void LoadNextLevel(string sceneName)
+    {
+        // Blackout the screen
+        UIController.BlackoutScreen(true);
+        
+
         // If the target scene is not open, load it
         scenesToLoad.Add(SceneManager.LoadSceneAsync(sceneName));
+        currentScene = sceneName;
+
+        // Unblackout
+        UIController.BlackoutScreen(false);
     }
 
-    public void loadScene(string sceneName) {
+    public void loadSceneAdditive(string sceneName) {
         Debug.Log("[GMCNTRL] Loading scene: " + sceneName);
         scenesToLoad.Add(SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive));
-    }
-
-    public void unloadScene(string sceneName)
-    {
-        // AsyncOperation sceneToUnload = SceneManager.UnloadSceneAsync(sceneName);
-        // scenesToLoad.Remove(sceneToUnload);
-        SceneManager.UnloadSceneAsync(sceneName);
     }
 
     public void exitGame()
     {
         Debug.print("Exiting game...");
         Application.Quit();
-    }
-
-    private List<Scene> getScenes() {
-        List<Scene> openScenes = new List<Scene>();
-        for (int i = 0; i < SceneManager.sceneCount; i++)
-        {
-            Scene scene = SceneManager.GetSceneAt(i);
-            openScenes.Add(scene);
-        }
-        return openScenes;
     }
 }

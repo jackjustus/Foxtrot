@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour
     public void loadLevel(string levelName)
     {
         Debug.Log("[LVLMNGR] Loading next level: " + levelName);
-        gameController.GetComponent<GameController>().standardLoadNextLevel(levelName); // Load the next level
+        gameController.GetComponent<GameController>().LoadNextLevel(levelName); // Load the next level
     }
 
 

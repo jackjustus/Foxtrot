@@ -5,9 +5,17 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
     [SerializeField] GameObject blackScreen;
-    public void sceneAnimation() {
-        // Play the scene transition animation
-        Debug.Log("[UICNTRL] Playing scene transition animation...");
+
+    void Awake() {
+        blackScreen.SetActive(false);
+    }
+
+    public void BlackoutScreen(bool fadeOut) {
+        if (fadeOut) {
+            Debug.Log("[UICTRL] Fading out screen");
+            blackScreen.SetActive(true);
+    } else
+            blackScreen.SetActive(false);
 
     }
 }
