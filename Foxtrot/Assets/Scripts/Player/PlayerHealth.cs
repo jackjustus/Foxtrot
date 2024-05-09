@@ -30,4 +30,32 @@ public class PlayerHealth : MonoBehaviour
     public int getPlayerMaxHealth() {
         return maxHealth;
     }
+
+
+
+
+    public void Damage(int amount)
+    {
+
+        if (amount < 0)
+        {
+            throw new System.ArgumentOutOfRangeException("Cannot have negative Damage");
+        }
+        this.currentHealth -= amount;
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+
+
+    }
+
+    private void Die()
+    {
+        UnityEngine.Debug.Log("I am Dead");
+        //Destroy(gameObject);
+    }
+
+
 }

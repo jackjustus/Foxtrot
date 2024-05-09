@@ -71,9 +71,15 @@ public class PlayerMovement1 : MonoBehaviour
 	{
 		SetGravityScale(Data.gravityScale);
 		IsFacingRight = true;
-	}
 
-	private void Update()
+		//Ignore collisions between player and player as well as between the enemy and the enemy's own hitbox
+		//tbh i think the second one isn't necessary but im not sure so were gonna keep it in
+		Physics2D.IgnoreLayerCollision(9, 10);
+        Physics2D.IgnoreLayerCollision(8, 10);
+    }
+    
+
+    private void Update()
 	{
         #region TIMERS
         LastOnGroundTime -= Time.deltaTime;
