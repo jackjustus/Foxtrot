@@ -35,6 +35,7 @@ public class EnemyAI : MonoBehaviour
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool m_Grounded;            // Whether or not the player is grounded.
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+    private bool m_movingRight;
     private Vector3 m_Velocity = Vector3.zero;
     bool jump = false;
 
@@ -79,8 +80,18 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
 
-        Debug.Log( "" + animationIsGrounded );
 
+        if(rb.velocity.x >0)
+        {
+            m_movingRight = true;
+        } 
+        if(rb.velocity.x < 0)
+        {
+            m_movingRight = false;
+        }
+        
+
+        
         animator.SetBool("isJumping", !animationIsGrounded);
 
         if (player != null)
@@ -129,7 +140,7 @@ public class EnemyAI : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     { 
-        Debug.Log("Enemy collided with: ");
+        
         
         animationIsGrounded = true;
     }
@@ -188,13 +199,13 @@ public class EnemyAI : MonoBehaviour
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
         // If the input is moving the player right and the player is facing left...
-        if (move > 0 && !m_FacingRight)
+        if (enemyToPlayer.x<0 && m_movingRight && m_FacingRight)
         {
             // ... flip the player.
             Flip();
         }
         // Otherwise if the input is moving the player left and the player is facing right...
-        else if (move < 0 && m_FacingRight)
+        else if (enemyToPlayer.x>0 && !m_movingRight && !m_FacingRight)
         {
             // ... flip the player.
             Flip();
@@ -228,11 +239,15 @@ public class EnemyAI : MonoBehaviour
         // Switch the way the player is labelled as facing.
         m_FacingRight = !m_FacingRight;
 
+        Debug.Log("swictching");
+
         // Multiply the player's x local scale by -1.
         Vector3 theScale = transform.localScale;
-        theScale.y *= -1;
+        theScale.x *= -1;
         transform.localScale = theScale;
     }
+
+
 
 
 
