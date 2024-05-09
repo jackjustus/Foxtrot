@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
 
-    public string currentScene {get; private set;} 
+    public static string currentScene {get; private set;} 
 
     List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
     
@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     {
         UIController = FindObjectOfType<UIController>();
         player = GameObject.FindGameObjectWithTag("Player");
+        currentScene = SceneManager.GetActiveScene().name;
     }
     public void LoadNextLevel(string sceneName)
     {
