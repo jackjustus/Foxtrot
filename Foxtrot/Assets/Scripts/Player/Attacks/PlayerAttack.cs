@@ -53,46 +53,30 @@ public class PlayerAttack : MonoBehaviour
         //write an if statment that runs if the player is grounded using the getGrounded or isGrounded function from the CharacterController2D script
         
         
-        if (!movingForward && Input.GetAxisRaw("Horizontal") != 0)
+       
+
+        if( ((Input.GetButtonDown("RightAttack") && facingRight) || (Input.GetButtonDown("LeftAttack") && !facingRight)) && !attacking)
         {
-            if (Input.GetButtonDown("Attack"))
-            {
-                BackwardAttack();
-            }
+            ForwardAttack();
         }
 
-        
-
-
-
-
-
-
-        if (Input.GetAxisRaw("Vertical") != 0 && (movingForward || Input.GetAxisRaw("Horizontal") ==0))
+        if( ((Input.GetButtonDown("RightAttack") && !facingRight) || (Input.GetButtonDown("LeftAttack") && facingRight)) && !attacking)
         {
-            if (Input.GetButtonDown("Attack"))
-            {
-                UpAttack();
-            }
+            BackwardAttack();
         }
-        if(Input.GetAxisRaw("Vertical") == 0 && (movingForward || Input.GetAxisRaw("Horizontal") == 0))
+
+        if(Input.GetButtonDown("UpAttack") && !attacking)
         {
-            if (Input.GetButtonDown("Attack"))
-            {
-                ForwardAttack();
-            }
+            UpAttack();
         }
-        
+
+        if(Input.GetButtonDown("DownAttack") && !attacking)
+        {
+            //DownAttack();
+        }
 
 
 
-
-
-
-
-
-
-        
 
 
 
