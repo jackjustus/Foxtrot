@@ -6,6 +6,9 @@ using UnityEngine.Events;
 public class EnemyAI : MonoBehaviour
 {
 
+
+    Animator animator;
+
     [Header("Enemy Constants")]
     [Space]
 
@@ -50,6 +53,8 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
 
+        animator = GetComponent<Animator>();
+
     }
 
 
@@ -66,6 +71,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
 
+        animator.SetBool("isJumping", !m_Grounded);
 
         if (player != null)
         {
@@ -119,6 +125,10 @@ public class EnemyAI : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+
+        animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
+        animator.SetFloat("yVelocity", rb.velocity.y);
 
         bool wasGrounded = m_Grounded;
         m_Grounded = false;
