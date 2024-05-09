@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.U2D;
 
 public class EnemyAI : MonoBehaviour
 {
 
 
     Animator animator;
+    bool animationIsGrounded = true;
 
     [Header("Enemy Constants")]
     [Space]
@@ -26,6 +28,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
 
+
+    SpriteRenderer sprite;
 
     // Jump & ground collision stuff
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
@@ -55,6 +59,10 @@ public class EnemyAI : MonoBehaviour
 
         animator = GetComponent<Animator>();
 
+
+
+        sprite = GetComponent<SpriteRenderer>();
+
     }
 
 
@@ -71,7 +79,9 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
 
-        animator.SetBool("isJumping", !m_Grounded);
+        Debug.Log( "" + animationIsGrounded );
+
+        animator.SetBool("isJumping", !animationIsGrounded);
 
         if (player != null)
         {
@@ -117,7 +127,13 @@ public class EnemyAI : MonoBehaviour
     }
 
 
-
+    private void OnTriggerStay2D(Collider2D collision)
+    { 
+        Debug.Log("Enemy collided with: ");
+        
+        animationIsGrounded = true;
+    }
+    
 
 
 
@@ -125,7 +141,7 @@ public class EnemyAI : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        
 
         animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
         animator.SetFloat("yVelocity", rb.velocity.y);
@@ -191,6 +207,8 @@ public class EnemyAI : MonoBehaviour
         // If the player should jump...
         if (m_Grounded && jump)
         {
+
+            animationIsGrounded = false;
             // Add a vertical force to the player.
             m_Grounded = false;
             rb.AddForce(new Vector2(-unitToPlayer.x, m_JumpForce));

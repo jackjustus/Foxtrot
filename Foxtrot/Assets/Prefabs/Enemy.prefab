@@ -210,7 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpeed: 60
   detectionRange: 9
-  maxJumpRange: 50
+  maxJumpRange: 8
   minJumpRange: 5
   m_JumpForce: 300
   m_MovementSmoothing: 0.5
@@ -312,8 +312,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.4029526, y: -7.917094}
-  m_Size: {x: 7.786107, y: 2.5080445}
+  m_Offset: {x: 1.4029526, y: -8.150932}
+  m_Size: {x: 7.7861094, y: 2.9757216}
   m_Direction: 1
 --- !u!95 &3316854444005814532
 Animator:
