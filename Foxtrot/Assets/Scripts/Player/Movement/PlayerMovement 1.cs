@@ -8,6 +8,11 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.U2D;
+
+
+
+
 
 public class PlayerMovement1 : MonoBehaviour
 {
@@ -19,8 +24,12 @@ public class PlayerMovement1 : MonoBehaviour
 
 	public PlayerData Data;
 
-	#region Variables
-	//Components
+    Animator animator;
+	private GameObject sprite;
+
+
+    #region Variables
+    //Components
     public Rigidbody2D RB { get; private set; }
 
 	//Variables control the various actions the player can perform at any time.
@@ -76,11 +85,21 @@ public class PlayerMovement1 : MonoBehaviour
 		//tbh i think the second one isn't necessary but im not sure so were gonna keep it in
 		Physics2D.IgnoreLayerCollision(9, 10);
         Physics2D.IgnoreLayerCollision(8, 10);
+
+        sprite = GameObject.FindGameObjectWithTag("Sprite");
+
+        animator = sprite.GetComponent<Animator>();
     }
     
 
     private void Update()
 	{
+
+
+		animator.SetFloat("xVelocity", Mathf.Abs(RB.velocity.x));
+		
+
+
         #region TIMERS
         LastOnGroundTime -= Time.deltaTime;
 		LastOnWallTime -= Time.deltaTime;

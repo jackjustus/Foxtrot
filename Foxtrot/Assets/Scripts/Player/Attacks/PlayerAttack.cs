@@ -11,18 +11,17 @@ public class PlayerAttack : MonoBehaviour
 
     private bool attacking = false;
 
-    private float timeToAttack = .25f;
+    private float timeToAttack = .33f;
     private float timer = 0f;
 
 
 
     private GameObject player;
     private PlayerMovement1 bool_script;
-   
-   
-        
-    
 
+    private GameObject sprite;
+    Animator animator;
+    private int AttackNum=0;
 
 
 
@@ -35,14 +34,19 @@ public class PlayerAttack : MonoBehaviour
         backAttackArea=transform.GetChild(2).gameObject;
 
         player = GameObject.FindGameObjectWithTag("Player");
+        sprite = GameObject.FindGameObjectWithTag("Sprite");
 
         bool_script = player.GetComponent<PlayerMovement1>();
+
+        animator = sprite.GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        animator.SetBool("isAttacking", attacking);
+        animator.SetFloat("AttackNum", AttackNum);
         
         bool facingRight = bool_script.IsFacingRight;
         bool movingRight = Input.GetAxisRaw("Horizontal") == 1;
@@ -57,21 +61,25 @@ public class PlayerAttack : MonoBehaviour
 
         if( ((Input.GetButtonDown("RightAttack") && facingRight) || (Input.GetButtonDown("LeftAttack") && !facingRight)) && !attacking)
         {
+            //AttackNum = 1;
             ForwardAttack();
         }
 
         if( ((Input.GetButtonDown("RightAttack") && !facingRight) || (Input.GetButtonDown("LeftAttack") && facingRight)) && !attacking)
         {
+            //AttackNum = 2;
             BackwardAttack();
         }
 
         if(Input.GetButtonDown("UpAttack") && !attacking)
         {
+            //AttackNum = 3;
             UpAttack();
         }
 
         if(Input.GetButtonDown("DownAttack") && !attacking)
         {
+            //AttackNum = 4;
             //DownAttack();
         }
 
@@ -80,15 +88,10 @@ public class PlayerAttack : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
         if (attacking)
         {
+            animator.SetTrigger("Attack");
+
             timer+=Time.deltaTime;
 
             if(timer>=timeToAttack)
