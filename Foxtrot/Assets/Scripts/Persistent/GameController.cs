@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour
         UIController = FindObjectOfType<UIController>();
         player = GameObject.FindGameObjectWithTag("Player");
         currentScene = SceneManager.GetActiveScene().name;
+
+        HideObjectsWithHiddenTag();
     }
     public void LoadNextLevel(string sceneName)
     {
@@ -43,5 +45,12 @@ public class GameController : MonoBehaviour
     {
         Debug.print("Exiting game...");
         Application.Quit();
+    }
+
+    private void HideObjectsWithHiddenTag() {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag("Hidden");
+        foreach(GameObject obj in objects) {
+            obj.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 }
