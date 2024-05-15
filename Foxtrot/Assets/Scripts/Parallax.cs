@@ -5,15 +5,18 @@ using UnityEngine;
 public class Parallax : MonoBehaviour
 {
 
-    private float length, startpos;
+    private float length, startposX, startposY;
     private GameObject cam;
     public float parallaxEffect;
+
+    private Vector3 velocity = Vector3.zero;
 
     void Start()
     {
         cam = GameObject.FindGameObjectWithTag("MainCamera");
         // startpos = cam.transform.position.x;
         length = GetComponent<SpriteRenderer>().bounds.size.x;
+        
     
     }
 
@@ -23,12 +26,13 @@ public class Parallax : MonoBehaviour
 
     void FixedUpdate()
     {
-        float distanceTraveled = cam.transform.position.x * (1 - parallaxEffect);
-        float parallaxDistance = cam.transform.position.x * parallaxEffect;
+        Vector2 distanceTraveled = cam.transform.position * (1 - parallaxEffect);
+        Vector2 parallaxDistance = cam.transform.position * parallaxEffect;
 
-        transform.position = new Vector3(startpos + parallaxDistance, transform.position.y, transform.position.z);
+        Vector3 targetPos = new Vector3(startposX + parallaxDistance.x, cam.transform.position.y, transform.position.z);
+        transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, 0.1f);
 
-        if (distanceTraveled > startpos + length) startpos += length;
-        else if (distanceTraveled < startpos - length) startpos -= length;
+        if (distanceTraveled.x > startposX + length) startposX += length;
+        else if (distanceTraveled.x < startposX - length) startposX -= length;
     }
 }
