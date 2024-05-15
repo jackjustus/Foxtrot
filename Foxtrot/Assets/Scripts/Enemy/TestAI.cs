@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public NavMeshAgent navAgent;
-    public Transform player;
+    private Transform player;
     public LayerMask groundLayer, playerLayer;
     public float health;
     public float walkPointRange;
@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        player = GameObject.Find("Player").transform;
+        player = GameObject.FindWithTag("Player").transform;
         navAgent = GetComponent<NavMeshAgent>();
     }
 
