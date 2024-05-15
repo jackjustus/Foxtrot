@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Persistent/HUDController.unity
     guid: 4b1e97e67361a4df9bafd4ad8af42395
   - enabled: 1
-    path: Assets/Scenes/Persistent/Gameplay.unity
+    path: Assets/Scenes/Gameplay.unity
     guid: 6061e769e5d264b2aa7b2cd9b4ee2cf2
   - enabled: 1
     path: Assets/Scenes/Chapter 0/Introduction.unity

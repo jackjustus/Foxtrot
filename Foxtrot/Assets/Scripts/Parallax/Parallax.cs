@@ -20,16 +20,12 @@ public class Parallax : MonoBehaviour
     
     }
 
-    public void LevelLoaded() {
-
-    }
-
     void FixedUpdate()
     {
         Vector2 distanceTraveled = cam.transform.position * (1 - parallaxEffect);
         Vector2 parallaxDistance = cam.transform.position * parallaxEffect;
 
-        Vector3 targetPos = new Vector3(startposX + parallaxDistance.x, cam.transform.position.y, transform.position.z);
+        Vector3 targetPos = new Vector3(startposX + parallaxDistance.x, transform.position.y, transform.position.z);
         transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, 0.1f);
 
         if (distanceTraveled.x > startposX + length) startposX += length;
