@@ -237,7 +237,7 @@ Transform:
   m_GameObject: {fileID: 2142734250491448087}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.56, z: 0}
+  m_LocalPosition: {x: -0.03, y: -0.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: f0da7086d5e937b449163f9950ded819, type: 2}
   _groundCheckPoint: {fileID: 8448509468634826201}
-  _groundCheckSize: {x: 1.3, y: 0.03}
+  _groundCheckSize: {x: 0.9, y: 0.03}
   _frontWallCheckPoint: {fileID: 7704240098832636676}
   _backWallCheckPoint: {fileID: 6169257843951210398}
   _wallCheckSize: {x: 0.5, y: 1}
