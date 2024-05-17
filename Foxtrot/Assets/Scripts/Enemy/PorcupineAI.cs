@@ -14,19 +14,31 @@ public class PorcupineAI : MonoBehaviour
     [Header("Enemy Constants")]
     [Space]
 
-    [SerializeField] private float enemySpeed = 60f;
+    [SerializeField] private float enemySpeed = 20f;
     [SerializeField] private float detectionRange = 200f;
-    [SerializeField] private float maxJumpRange = 50f;
-    [SerializeField] private float minJumpRange = 5f;
+    [SerializeField] private float maxAttackRange = 8f;
+    [SerializeField] private float minAttackRange = 0f;
     private Transform player;
     private Rigidbody2D rb;
 
 
-    [SerializeField] private float m_JumpForce = 300f;                          // Amount of force added when the player jumps.
-    [Range(0, 1f)][SerializeField] private float m_MovementSmoothing = .5f;     // How much to smooth out the movement
+    [SerializeField] private float m_JumpForce = 100f;                          // Amount of force added when the player jumps.
+    [Range(0, 1f)][SerializeField] private float m_MovementSmoothing = 0f;     // How much to smooth out the movement
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
+
+
+
+    [SerializeField] private float attackCooldown;
+    //[SerializeField] private float range;
+    //[SerializeField] private int damage;
+
+    [SerializeField] private Transform spinepoint;
+    [SerializeField] private GameObject spine;
+
+
+    private float cooldownTimer = Mathf.Infinity;
 
 
     SpriteRenderer sprite;
@@ -38,6 +50,9 @@ public class PorcupineAI : MonoBehaviour
     private bool m_movingRight;
     private Vector3 m_Velocity = Vector3.zero;
     bool jump = false;
+
+
+    private bool attacking = false;
 
     // Player Targeting
     Vector2 enemyToPlayer;
@@ -80,6 +95,17 @@ public class PorcupineAI : MonoBehaviour
     void Update()
     {
 
+        if(cooldownTimer>=1.5f)
+        {
+            attacking = false;
+        }
+
+        if(attacking)
+        {
+            //set the rigidbody velocity to 0
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+
 
         if (rb.velocity.x > 0)
         {
@@ -90,6 +116,7 @@ public class PorcupineAI : MonoBehaviour
             m_movingRight = false;
         }
 
+        cooldownTimer += Time.deltaTime;
 
 
         animator.SetBool("isJumping", !animationIsGrounded);
@@ -107,16 +134,24 @@ public class PorcupineAI : MonoBehaviour
 
 
             // Move towards the player if within detection range
-            if (distanceToPlayer <= detectionRange)
+            if (distanceToPlayer <= detectionRange && !attacking)
             {
 
 
                 // Perform attack or other actions when within attack range
-                if (distanceToPlayer <= maxJumpRange && distanceToPlayer >= minJumpRange)
+                if (distanceToPlayer <= maxAttackRange && distanceToPlayer >= minAttackRange && cooldownTimer >= attackCooldown)
                 {
                     // Perform attack action here
+                    attacking = true;
+                    cooldownTimer = 0;
+                    animator.SetBool("isAttacking", true);
+                    StartCoroutine(RangedAttack());
+                    
 
-                    jump = true;
+                }
+                else
+                {
+                    animator.SetBool("isAttacking", false);
                 }
 
                 Move(enemySpeed * Time.fixedDeltaTime, jump);
@@ -137,6 +172,19 @@ public class PorcupineAI : MonoBehaviour
 
 
     }
+
+    private IEnumerator RangedAttack()
+    {
+        cooldownTimer = 0;
+        
+        yield return new WaitForSeconds(0.5f);
+
+        spine.transform.position = spinepoint.position;
+        spine.GetComponent<EnemyProjectileSpine>().ActivateProjectile();
+        
+        
+    }
+
 
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -240,7 +288,6 @@ public class PorcupineAI : MonoBehaviour
         // Switch the way the player is labelled as facing.
         m_FacingRight = !m_FacingRight;
 
-        Debug.Log("swictching");
 
         // Multiply the player's x local scale by -1.
         Vector3 theScale = transform.localScale;
