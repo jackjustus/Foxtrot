@@ -119,7 +119,7 @@ public class PorcupineAI : MonoBehaviour
         cooldownTimer += Time.deltaTime;
 
 
-        animator.SetBool("isJumping", !animationIsGrounded);
+        //animator.SetBool("isJumping", !animationIsGrounded);
 
         if (player != null)
         {
@@ -204,7 +204,7 @@ public class PorcupineAI : MonoBehaviour
 
 
         animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
-        animator.SetFloat("yVelocity", rb.velocity.y);
+        //animator.SetFloat("yVelocity", rb.velocity.y);
 
         bool wasGrounded = m_Grounded;
         m_Grounded = false;

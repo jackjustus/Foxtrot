@@ -1585,13 +1585,14 @@ MonoBehaviour:
   wind: {fileID: 0}
   walking: {fileID: 0}
   forwardAttack: {fileID: 0}
-  jump: {fileID: 8300000, guid: 9fe03d0c1467c6c4a8af66cb94c1a037, type: 3}
+  jump: {fileID: 0}
   upAttack: {fileID: 0}
   backwardsAttack: {fileID: 0}
   downAttack: {fileID: 0}
   treeBackground: {fileID: 8300000, guid: adc3aa1cca53d4d4186d92f7d8d2c2ed, type: 3}
   waterfall: {fileID: 0}
   background: {fileID: 8300000, guid: 6fda64be3dff1ce48968d652d7c925f8, type: 3}
+  landing: {fileID: 8300000, guid: 9fe03d0c1467c6c4a8af66cb94c1a037, type: 3}
 --- !u!224 &1772177278
 RectTransform:
   m_ObjectHideFlags: 0

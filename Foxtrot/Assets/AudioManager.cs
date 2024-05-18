@@ -21,7 +21,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip treeBackground;
     public AudioClip waterfall;
     public AudioClip background;
-
+    public AudioClip landing;
 
 
     private void Start()
@@ -35,6 +35,12 @@ public class AudioManager : MonoBehaviour
     {
         SFXSource.PlayOneShot(clip);
     }
+
+    public void PlaySFXOnce(AudioClip clip)
+    {
+        SFXSource.clip = clip;
+        SFXSource.Play();
+    }   
 
 
 }
