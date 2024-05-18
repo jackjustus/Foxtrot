@@ -8,6 +8,7 @@ TagManager:
   - Sprite
   - Hidden
   - UIController
+  - Audio
   layers:
   - Default
   - TransparentFX
