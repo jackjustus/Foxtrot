@@ -61,7 +61,7 @@ public class NPC : MonoBehaviour
         {
             UnityEngine.Debug.Log("Dialogue avalible");
             isInteractionAllowed = true;
-            dialoguePromptEvent.Invoke(true);   // Show the interaction prompt
+            UIController.ShowDialoguePrompt(true);   // Show the interaction prompt
         }
     }
 
@@ -71,7 +71,7 @@ public class NPC : MonoBehaviour
         {
             UnityEngine.Debug.Log("dialogue unavaliable");// Code to run when the player exits the circle collider
             isInteractionAllowed = false;
-            dialoguePromptEvent.Invoke(false);   // Show the interaction prompt
+            UIController.ShowDialoguePrompt(false);   // Hide the interaction prompt
         }
     }
 }
