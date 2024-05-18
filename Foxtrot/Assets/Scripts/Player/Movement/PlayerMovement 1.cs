@@ -29,6 +29,7 @@ public class PlayerMovement1 : MonoBehaviour
 
     Animator animator;
 	private GameObject sprite;
+	AudioManager audioManager;
 
 
     #region Variables
@@ -77,6 +78,7 @@ public class PlayerMovement1 : MonoBehaviour
     private void Awake()
 	{
 		RB = GetComponent<Rigidbody2D>();
+		audioManager= GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
 	}
 
 	private void Start()
@@ -355,6 +357,8 @@ public class PlayerMovement1 : MonoBehaviour
 		LastOnGroundTime = 0;
 
 		#region Perform Jump
+
+		audioManager.PlaySFX(audioManager.jump);
 		//We increase the force applied if we are falling
 		//This means we'll always feel like we jump the same amount 
 		//(setting the player's Y velocity to 0 beforehand will likely work the same, but I find this more elegant :D)
