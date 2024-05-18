@@ -10,17 +10,17 @@ public class NPC : MonoBehaviour
     public string npcDialogue;
 
     // State Vars
-    public bool isInteractionAllowed { get; private set;}
-    public bool isDialogueActive { get; private set;}      
+    public bool isInteractionAllowed { get; private set; }
+    public bool isDialogueActive { get; private set; }
 
     // Helper Objects
-    UIController UIController;       
+    UIController UIController;
+    DialogueManager dialogueManager;
 
     // Events
-    public UnityEvent<bool> dialoguePromptEvent;                      // This event is triggered when interactionAllowed changes with the bool as a parameter
+    public UnityEvent<bool> dialoguePromptEvent;                // This event is triggered when interactionAllowed changes with the bool as a parameter
     public UnityEvent dialogueStartEvent;                       // This event is triggered when dialogueActive is set to true
     public UnityEvent dialogueEndEvent;                         // This event is triggered when dialogueActive is set to false
-
 
 
     public void Start()
@@ -30,12 +30,12 @@ public class NPC : MonoBehaviour
         isDialogueActive = false;
 
         // Intialize events
-        dialoguePromptEvent = new UnityEvent<bool>();
-        dialogueStartEvent = new UnityEvent();
-        dialogueEndEvent = new UnityEvent();
+        InitializeEvents();
 
         // Initilize UIController
         UIController = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
+        
+
     }
 
     public void FixedUpdate()
@@ -49,10 +49,11 @@ public class NPC : MonoBehaviour
                 // Start Dialogue
                 UnityEngine.Debug.Log("Dialogue triggered");
                 isDialogueActive = true;
+                //DialogueManager.StartDialogue();
                 dialogueStartEvent.Invoke();
             }
         }
-    }   
+    }
 
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -64,7 +65,6 @@ public class NPC : MonoBehaviour
             UIController.ShowDialoguePrompt(true);   // Show the interaction prompt
         }
     }
-
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -73,5 +73,10 @@ public class NPC : MonoBehaviour
             isInteractionAllowed = false;
             UIController.ShowDialoguePrompt(false);   // Hide the interaction prompt
         }
+    }
+    void InitializeEvents() {
+        dialoguePromptEvent = new UnityEvent<bool>();
+        dialogueStartEvent = new UnityEvent();
+        dialogueEndEvent = new UnityEvent();
     }
 }

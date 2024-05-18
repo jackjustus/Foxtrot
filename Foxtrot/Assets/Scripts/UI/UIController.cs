@@ -6,6 +6,7 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private GameObject blackScreen;
     [SerializeField] private GameObject dialoguePrompter;
+    [SerializeField] private GameObject dialogueText;
 
     void Awake() {
         blackScreen.SetActive(false);
@@ -18,7 +19,14 @@ public class UIController : MonoBehaviour
             blackScreen.SetActive(true);
     } else
             blackScreen.SetActive(false);
+    }
 
+    public void StartDialogue() {
+        Debug.Log("Starting dialogue");
+
+        // Displaying the UI Elements
+        ShowDialogueBox(true);
+        ShowDialoguePrompt(false);
     }
 
     public void ShowDialoguePrompt(bool show) {
@@ -29,4 +37,16 @@ public class UIController : MonoBehaviour
             dialoguePrompter.SetActive(false);
         }
     }
+    public void ShowDialogueBox(bool show) {
+        if (show) {
+            Debug.Log("[UICTRL] Showing dialogue box");
+            dialogueText.SetActive(true);
+        } else {
+            dialogueText.SetActive(false);
+        }
+    }
+    public void SetDialogueText(string text) {
+        dialogueText.GetComponent<TextMesh>().text = text;
+    }
+
 }
