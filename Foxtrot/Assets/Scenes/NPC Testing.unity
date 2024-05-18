@@ -4130,9 +4130,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1341121475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fefcc7fbef18642afb74cbe93bbcd887, type: 3}
+  m_Script: {fileID: 11500000, guid: ffe652463e0b542c0a79190804837182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcName: Healer
+  npcDialogue: hello
 --- !u!1 &1386710302
 GameObject:
   m_ObjectHideFlags: 0

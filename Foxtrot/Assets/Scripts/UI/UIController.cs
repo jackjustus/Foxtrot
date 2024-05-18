@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] GameObject blackScreen;
+    [SerializeField] private GameObject blackScreen;
+    [SerializeField] private GameObject dialoguePrompter;
 
     void Awake() {
         blackScreen.SetActive(false);
+        dialoguePrompter.SetActive(false);
     }
 
     public void BlackoutScreen(bool fadeOut) {
@@ -17,5 +19,14 @@ public class UIController : MonoBehaviour
     } else
             blackScreen.SetActive(false);
 
+    }
+
+    public void ShowDialoguePrompt(bool show) {
+        if (show) {
+            Debug.Log("[UICTRL] Showing dialogue prompt");
+            dialoguePrompter.SetActive(true);
+        } else {
+            dialoguePrompter.SetActive(false);
+        }
     }
 }
