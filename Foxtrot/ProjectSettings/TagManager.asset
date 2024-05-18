@@ -7,6 +7,8 @@ TagManager:
   - Slope
   - Sprite
   - Hidden
+  - UIController
+  - Audio
   layers:
   - Default
   - TransparentFX

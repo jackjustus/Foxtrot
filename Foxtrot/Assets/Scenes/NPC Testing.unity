@@ -4130,9 +4130,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1341121475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fefcc7fbef18642afb74cbe93bbcd887, type: 3}
+  m_Script: {fileID: 11500000, guid: ffe652463e0b542c0a79190804837182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcName: Healer
+  npcDialogue: hello
+  dialoguePromptEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 670f0278b346b4f6c8ace7c97bc9d968, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  dialogueStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  dialogueEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1386710302
 GameObject:
   m_ObjectHideFlags: 0
@@ -6729,9 +6752,17 @@ PrefabInstance:
       value: Exit Trigger
       objectReference: {fileID: 0}
     - target: {fileID: 3717330940348115995, guid: 871806c31490449df9134140948cd02e, type: 3}
+      propertyPath: playerExitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3717330940348115995, guid: 871806c31490449df9134140948cd02e, type: 3}
       propertyPath: playerExitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1883271436}
+    - target: {fileID: 3717330940348115995, guid: 871806c31490449df9134140948cd02e, type: 3}
+      propertyPath: playerExitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevel
+      objectReference: {fileID: 0}
     - target: {fileID: 7322173832871582641, guid: 871806c31490449df9134140948cd02e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.2

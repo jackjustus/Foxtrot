@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour
         MovePlayerToStartPosition();
     }
 
-    public void loadLevel(string levelName)
+    public void LoadLevel(string levelName)
     {
         Debug.Log("[LVLMNGR] Loading next level: " + levelName);
         gameController.GetComponent<GameController>().LoadNextLevel(levelName); // Load the next level

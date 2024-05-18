@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AudioManager : MonoBehaviour
+{
+
+    [Header("----------Audio Sources-----------")]
+    [SerializeField] AudioSource musicSource;
+    [SerializeField] AudioSource SFXSource;
+    // Start is called before the first frame update
+
+    [Header("----------Audio Clips-----------")]
+    public AudioClip wind;
+    public AudioClip walking;
+    public AudioClip forwardAttack;
+    public AudioClip jump;
+    public AudioClip upAttack;
+    public AudioClip backwardsAttack;
+    public AudioClip downAttack;
+    public AudioClip treeBackground;
+    public AudioClip waterfall;
+    public AudioClip background;
+
+
+
+    private void Start()
+    {
+        musicSource.clip = background;
+        musicSource.Play();
+    }
+
+
+    public void PlaySFX(AudioClip clip)
+    {
+        SFXSource.PlayOneShot(clip);
+    }
+
+
+}
