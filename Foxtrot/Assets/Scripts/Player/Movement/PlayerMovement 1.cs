@@ -22,6 +22,9 @@ public class PlayerMovement1 : MonoBehaviour
 	//HOW TO: to add the scriptable object, right-click in the project window -> create -> Player Data
 	//Next, drag it into the slot in playerMovement on your player
 
+	// Locking the player movement
+	public static bool isInputLocked;
+
 	public PlayerData Data;
 
     Animator animator;
@@ -248,6 +251,9 @@ public class PlayerMovement1 : MonoBehaviour
 
     private void FixedUpdate()
 	{
+		if (isInputLocked)
+			return;
+		
 		//Handle Run
 		if (IsWallJumping)
 			Run(Data.wallJumpRunLerp);
