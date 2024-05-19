@@ -23,7 +23,7 @@ public class NPC : MonoBehaviour
 
     // Dialogue Vars
     DialogueList dialogue;
-    private int dialogueIndex = 0;
+    [SerializeField] private int dialogueIndex = 0;
     private string currentDialogue;
 
 
@@ -45,20 +45,34 @@ public class NPC : MonoBehaviour
 
     public void Update()
     {
-        if (isDialogueActive)
+
+        // Dialogue Logic
+        switch (isDialogueActive)
         {
-            if (Input.GetButtonDown("Interact")) // If the player presses the interact button
-                UIController.SetDialogueText(GetNextDialogue());
-        }
+            case true:
+                // Dialogue is active
+                if (Input.GetButtonDown("Interact"))
+                {                  // If the player presses the interact button
+                    Debug.Log("Next Dialogue Requested");
 
-        
-        if (isDialogueAllowed && !isDialogueActive)
-        {
-            // Dialogue is able to be started
+                    currentDialogue = GetNextDialogue();                // Get the next peice of dialogue
 
-            if (Input.GetButtonDown("Interact")) // If the player presses the interact button
-                StartDialogue();
+                    if (currentDialogue == "##END DIALOGUE")            // Check if the dialogue has ended
+                        EndDialogue();
+                    else
+                        UIController.SetDialogueText(currentDialogue);  // Set the dialogue text
+                }
+                break;
+            case false:
+                // Dialogue is not active
+                if (isDialogueAllowed && Input.GetButtonDown("Interact"))
 
+                    StartDialogue();
+                else if (isDialogueAllowed)
+                {
+                }
+
+                break;
         }
     }
 
@@ -67,12 +81,15 @@ public class NPC : MonoBehaviour
     #region Dialogue
     private void StartDialogue()
     {
+        // This sets the UIController
+        UnityEngine.Debug.Log("Dialogue Started w/ Index " + dialogueIndex);
 
-        UnityEngine.Debug.Log("Dialogue triggered");
+        // Gets the first line of dialogue
+        GetNextDialogue();
+        UIController.SetDialogueText(currentDialogue);
 
         // Display the dialogue box & Hide the interaction prompt
         UIController.ShowDialogueBox(true);
-        UIController.SetDialogueText(GetNextDialogue());
 
         // Update state variables
         isDialogueActive = true;
@@ -81,13 +98,17 @@ public class NPC : MonoBehaviour
         dialogueStartEvent.Invoke();
     }
 
-    private void EndDialogue() {
+    private void EndDialogue()
+    {
 
         UnityEngine.Debug.Log("Dialogue Ended");
 
         // Hiding the dialogue box
         UIController.ShowDialogueBox(false);
         UIController.SetDialogueText("Dialogue Ended");
+
+        // Reset Index
+        dialogueIndex = 0;
 
         // Update state variables
         isDialogueActive = false;
@@ -99,7 +120,16 @@ public class NPC : MonoBehaviour
     private string GetNextDialogue()
     {
         // This gets the next entry from the dialogue list
-        // It will also set the new dialogue to the variable currentDialogue
+
+
+
+
+        // Fetching & Returning the dialogue
+        if (dialogueIndex < dialogue.GetDialogueLength())
+            currentDialogue = dialogue.GetDialogue(dialogueIndex);
+        else
+            currentDialogue =  "##END DIALOGUE";
+        
 
         // Incrementing the dialogue index
         if (currentDialogue == null)
@@ -107,28 +137,18 @@ public class NPC : MonoBehaviour
         else
             dialogueIndex++;
 
-        // Fetching & Returning the dialogue
-        if (dialogueIndex < dialogue.GetDialogueLength()) {
-            currentDialogue = dialogue.GetDialogueString(dialogueIndex);
-            Debug.Log(currentDialogue);
-
-            return currentDialogue;
-        } else {
-            EndDialogue();
-            return "";
-        }
         
+        return currentDialogue;
 
     }
     #endregion
-    
+
 
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            UnityEngine.Debug.Log("Dialogue avalible");
             isDialogueAllowed = true;
             UIController.ShowDialoguePrompt(true);   // Show the interaction prompt
         }
@@ -138,10 +158,13 @@ public class NPC : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            UnityEngine.Debug.Log("dialogue unavaliable");// Code to run when the player exits the circle collider
             isDialogueAllowed = false;
             UIController.ShowDialoguePrompt(false);   // Hide the interaction prompt
         }
+
+        // End the dialogue if it is active
+        if (isDialogueActive)
+            EndDialogue();
     }
 
     private void InitializeDialogue()

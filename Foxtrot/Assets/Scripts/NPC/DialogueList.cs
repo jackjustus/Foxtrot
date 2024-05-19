@@ -9,7 +9,7 @@ public class DialogueList : MonoBehaviour
     public string dialoguePurpose;
     public string[] dialogue;
 
-    public string GetDialogueString(int index)
+    public string GetDialogue(int index)
     {
         return dialogue[index];
     }
