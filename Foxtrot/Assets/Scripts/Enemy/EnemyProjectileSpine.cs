@@ -3,11 +3,13 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class EnemyProjectileSpine : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] private float baseSpeed;
     [SerializeField] private float resetTime;
     [SerializeField] private UnityEngine.Transform enemy;
     private int damage = 1;
     Vector2 enemyToPlayer;
+
+    private float speed;
 
     private float lifetime;
     private UnityEngine.Transform player;
@@ -29,6 +31,16 @@ public class EnemyProjectileSpine : MonoBehaviour
         gameObject.SetActive(true);
         coll.enabled = true;
 
+
+        Vector3 pos = enemy.position;
+
+        // Creating a unit vector from the player to the enemy
+        enemyToPlayer = (pos - player.position);
+
+
+
+        speed = baseSpeed;
+
         if (enemyToPlayer.x > 0)
         {
             speed = -speed;
@@ -42,12 +54,10 @@ public class EnemyProjectileSpine : MonoBehaviour
     private void Update()
     {
 
+        
 
-        Vector3 pos = transform.position;
-
-        // Creating a unit vector from the player to the enemy
-        enemyToPlayer = (pos - player.position);
-
+        
+        
 
 
         if (hit) return;
@@ -56,13 +66,14 @@ public class EnemyProjectileSpine : MonoBehaviour
         float movementSpeed = speed * Time.deltaTime;
 
         transform.Translate(movementSpeed, 0, 0);
+
+
         
-       
-
-
         lifetime += Time.deltaTime;
         if (lifetime > resetTime)
             gameObject.SetActive(false);
+
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -79,7 +90,7 @@ public class EnemyProjectileSpine : MonoBehaviour
         }
 
         hit = true;
-        transform.localScale = enemy.localScale;
+        //transform.localScale = enemy.localScale;
         //base.OnTriggerEnter2D(collision); //Execute logic from parent script first
         coll.enabled = false;
 
