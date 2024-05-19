@@ -101,7 +101,7 @@ public class PlayerMovement1 : MonoBehaviour
         animator = sprite.GetComponent<Animator>();
     }
     
-	bool wasGrounded = false;
+	
 
     private void Update()
 	{
@@ -115,7 +115,8 @@ public class PlayerMovement1 : MonoBehaviour
         {
             // Call the function when the boolean changes from false to true
             animator.SetBool("isJumping", false);
-
+			audioManager.PlaySFX(audioManager.landing);
+			
         }
 
         // Update the previous state to the current state
@@ -347,7 +348,7 @@ public class PlayerMovement1 : MonoBehaviour
 
 		//Convert this to a vector and apply to rigidbody
 		RB.AddForce(movement * Vector2.right, ForceMode2D.Force);
-
+		audioManager.PlaySFX(audioManager.walking);
 		/*
 		 * For those interested here is what AddForce() will do
 		 * RB.velocity = new Vector2(RB.velocity.x + (Time.fixedDeltaTime  * speedDif * accelRate) / RB.mass, RB.velocity.y);

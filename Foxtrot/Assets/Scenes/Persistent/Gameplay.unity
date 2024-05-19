@@ -1683,7 +1683,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1455320832
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1856,7 +1856,7 @@ MonoBehaviour:
   musicSource: {fileID: 2031177506}
   SFXSource: {fileID: 1897921010}
   wind: {fileID: 0}
-  walking: {fileID: 0}
+  walking: {fileID: 8300000, guid: a1bcaadeaa1c6fc40942c602a4a91fef, type: 3}
   forwardAttack: {fileID: 0}
   jump: {fileID: 0}
   upAttack: {fileID: 0}
