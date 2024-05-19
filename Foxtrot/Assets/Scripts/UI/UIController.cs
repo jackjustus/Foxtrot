@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
     [SerializeField] private GameObject blackScreen;
     [SerializeField] private GameObject dialoguePrompter;
-    [SerializeField] private GameObject dialogueText;
+    [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private GameObject dialogueTextBox;
 
     void Awake() {
         blackScreen.SetActive(false);
         dialoguePrompter.SetActive(false);
         dialogueTextBox.SetActive(false);
+
+
+        dialogueText = dialogueTextBox.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public void BlackoutScreen(bool fadeOut) {
@@ -36,13 +40,16 @@ public class UIController : MonoBehaviour
     public void ShowDialogueBox(bool show) {
         if (show) {
             Debug.Log("[UICTRL] Showing dialogue box");
-            dialogueText.SetActive(true);
+            dialogueTextBox.SetActive(true);
         } else {
-            dialogueText.SetActive(false);
+            dialogueTextBox.SetActive(false);
         }
     }
     public void SetDialogueText(string text) {
-        dialogueText.GetComponent<TextMesh>().text = text;
+        dialogueText.text = text;
+        if (dialogueText == null) {
+            Debug.LogError("[UICTRL] Dialogue text is null!");
+        }
     }
 
 }
