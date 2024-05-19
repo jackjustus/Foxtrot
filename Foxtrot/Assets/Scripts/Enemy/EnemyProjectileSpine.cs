@@ -28,7 +28,17 @@ public class EnemyProjectileSpine : MonoBehaviour
         lifetime = 0;
         gameObject.SetActive(true);
         coll.enabled = true;
+
+        if (enemyToPlayer.x > 0)
+        {
+            speed = -speed;
+        }
+        
     }
+
+    
+
+
     private void Update()
     {
 
@@ -41,15 +51,14 @@ public class EnemyProjectileSpine : MonoBehaviour
 
 
         if (hit) return;
+        //float movementSpeed = speed * Time.deltaTime;
+
         float movementSpeed = speed * Time.deltaTime;
-        if(enemyToPlayer.x > 0)
-        {
-            transform.Translate(-movementSpeed, 0, 0);
-        }
-        else
-        {
-            transform.Translate(movementSpeed, 0, 0);
-        }
+
+        transform.Translate(movementSpeed, 0, 0);
+        
+       
+
 
         lifetime += Time.deltaTime;
         if (lifetime > resetTime)
