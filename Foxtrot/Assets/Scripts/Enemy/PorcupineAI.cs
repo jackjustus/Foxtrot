@@ -9,7 +9,7 @@ public class PorcupineAI : MonoBehaviour
 
 
     Animator animator;
-    bool animationIsGrounded = true;
+    
 
     [Header("Enemy Constants")]
     [Space]
@@ -187,12 +187,7 @@ public class PorcupineAI : MonoBehaviour
 
 
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-
-
-        animationIsGrounded = true;
-    }
+    
 
 
 
@@ -268,7 +263,7 @@ public class PorcupineAI : MonoBehaviour
         if (m_Grounded && jump)
         {
 
-            animationIsGrounded = false;
+            
             // Add a vertical force to the player.
             m_Grounded = false;
             rb.AddForce(new Vector2(-unitToPlayer.x, m_JumpForce));
