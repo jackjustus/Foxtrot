@@ -91,8 +91,21 @@ public class NPC : MonoBehaviour
 
         // Trigger Event
         dialogueStartEvent.Invoke();
+    }
 
+    private void EndDialogue() {
 
+        UnityEngine.Debug.Log("Dialogue Ended");
+
+        // Hiding the dialogue box
+        UIController.ShowDialogueBox(false);
+        UIController.SetDialogueText("Dialogue Ended");
+
+        // Update state variables
+        isDialogueActive = false;
+
+        // Trigger Event
+        dialogueEndEvent.Invoke();
     }
 
     private string GetNextDialogue()
@@ -103,20 +116,21 @@ public class NPC : MonoBehaviour
         else
             dialogueIndex++;
 
-        Debug.Log("Dialogue Index: " + dialogueIndex);
-        Debug.Log("Dialogue Length: " + dialogue.GetDialogueLength());
-        Debug.Log("Dialogue: " + dialogue.GetDialogueString(dialogueIndex));
         // Fetching & Returning the dialogue
         if (dialogueIndex < dialogue.GetDialogueLength()) {
             currentDialogue = dialogue.GetDialogueString(dialogueIndex);
             Debug.Log(currentDialogue);
 
             return currentDialogue;
-        } else
-            return null;
+        } else {
+            EndDialogue();
+            return "";
+        }
         
 
     }
+
+    
 
 
     private void InitializeDialogue()

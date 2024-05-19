@@ -8,14 +8,12 @@ public class HealthOverlayController : MonoBehaviour
     [SerializeField] private GameObject healthOverlayUI;
     private Image healthUIImage;
     [SerializeField] TextMeshProUGUI healthTextUI;
-    private TMP_Text healthText;
 
     public bool debugEnabled = false;
 
 
     public void Awake() {
         healthUIImage = healthOverlayUI.GetComponent<Image>();
-        healthText = healthOverlayUI.GetComponent<TMP_Text>();
     }
 
     // public void Update() {
