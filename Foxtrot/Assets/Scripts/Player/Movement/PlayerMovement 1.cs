@@ -6,6 +6,7 @@
 	Feel free to use this in your own games, and I'd love to see anything you make!
  */
 
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.U2D;
@@ -54,6 +55,8 @@ public class PlayerMovement1 : MonoBehaviour
 	private bool _isJumpCut;
 	private bool _isJumpFalling;
 
+	private bool previousCanJump;
+
 	//Wall Jump
 	private float _wallJumpStartTime;
 	private int _lastWallJumpDir;
@@ -86,6 +89,8 @@ public class PlayerMovement1 : MonoBehaviour
 		SetGravityScale(Data.gravityScale);
 		IsFacingRight = true;
 
+		previousCanJump = CanJump();
+
 		//Ignore collisions between player and player as well as between the enemy and the enemy's own hitbox
 		//tbh i think the second one isn't necessary but im not sure so were gonna keep it in
 		Physics2D.IgnoreLayerCollision(9, 10);
@@ -104,8 +109,17 @@ public class PlayerMovement1 : MonoBehaviour
 
 		animator.SetFloat("xVelocity", Mathf.Abs(RB.velocity.x));
 
-		
+		animator.SetFloat("yVelocity", RB.velocity.y);
 
+        if (!previousCanJump && CanJump())
+        {
+            // Call the function when the boolean changes from false to true
+            animator.SetBool("isJumping", false);
+
+        }
+
+        // Update the previous state to the current state
+        previousCanJump = CanJump();
 
 
         #region TIMERS
@@ -355,6 +369,7 @@ public class PlayerMovement1 : MonoBehaviour
     #region JUMP METHODS
     private void Jump()
 	{
+		animator.SetBool("isJumping", true);
 		//Ensures we can't call Jump multiple times from one press
 		LastPressedJumpTime = 0;
 		LastOnGroundTime = 0;
