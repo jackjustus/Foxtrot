@@ -7,10 +7,12 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject blackScreen;
     [SerializeField] private GameObject dialoguePrompter;
     [SerializeField] private GameObject dialogueText;
+    [SerializeField] private GameObject dialogueTextBox;
 
     void Awake() {
         blackScreen.SetActive(false);
         dialoguePrompter.SetActive(false);
+        dialogueTextBox.SetActive(false);
     }
 
     public void BlackoutScreen(bool fadeOut) {
@@ -21,13 +23,7 @@ public class UIController : MonoBehaviour
             blackScreen.SetActive(false);
     }
 
-    public void StartDialogue() {
-        Debug.Log("Starting dialogue");
 
-        // Displaying the UI Elements
-        ShowDialogueBox(true);
-        ShowDialoguePrompt(false);
-    }
 
     public void ShowDialoguePrompt(bool show) {
         if (show) {

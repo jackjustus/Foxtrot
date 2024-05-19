@@ -4116,52 +4116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de5b62bb0d6e4b70bd4d3276cd72ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1341121475 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9162339504528970401, guid: 763fb9ebce8024c6699194a8628b99ec, type: 3}
-  m_PrefabInstance: {fileID: 3232762377479967126}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1341121476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1341121475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffe652463e0b542c0a79190804837182, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npcName: Healer
-  npcDialogue: hello
-  dialoguePromptEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11500000, guid: 670f0278b346b4f6c8ace7c97bc9d968, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-  dialogueStartEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  dialogueEndEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  dialogue: {fileID: 0}
---- !u!4 &1341121479 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8232922218692818076, guid: 763fb9ebce8024c6699194a8628b99ec, type: 3}
-  m_PrefabInstance: {fileID: 3232762377479967126}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1386710302
 GameObject:
   m_ObjectHideFlags: 0
@@ -4246,55 +4200,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1446826549}
   m_LocalEulerAnglesHint: {x: -4.161, y: 0.95, z: -8.673}
---- !u!1 &1422924904
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1422924905}
-  - component: {fileID: 1422924906}
-  m_Layer: 0
-  m_Name: Dialogue
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1422924905
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422924904}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1341121479}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1422924906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422924904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ba9197d21eb340b99e2e908d0a927fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueName: Introduction Dialogue
-  dialoguePurpose: to introduce the player and have them get healed
-  npcDialogue:
-  - Hello There!
-  - This is Dialogue!
 --- !u!1 &1446826548
 GameObject:
   m_ObjectHideFlags: 0
@@ -6944,6 +6849,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1634108255384482656, guid: 763fb9ebce8024c6699194a8628b99ec, type: 3}
+      propertyPath: dialogue.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634108255384482656, guid: 763fb9ebce8024c6699194a8628b99ec, type: 3}
+      propertyPath: dialogue.Array.data[0]
+      value: ehllo
+      objectReference: {fileID: 0}
     - target: {fileID: 8232922218692818076, guid: 763fb9ebce8024c6699194a8628b99ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: -38.51
@@ -6990,14 +6903,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8232922218692818076, guid: 763fb9ebce8024c6699194a8628b99ec, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1422924905}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9162339504528970401, guid: 763fb9ebce8024c6699194a8628b99ec, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1341121476}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 763fb9ebce8024c6699194a8628b99ec, type: 3}
 --- !u!1001 &5241530672635782509
 PrefabInstance:
