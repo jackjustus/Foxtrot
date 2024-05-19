@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class NPC : MonoBehaviour
@@ -44,6 +45,13 @@ public class NPC : MonoBehaviour
 
     public void Update()
     {
+        if (isDialogueActive)
+        {
+            if (Input.GetButtonDown("Interact")) // If the player presses the interact button
+                UIController.SetDialogueText(GetNextDialogue());
+        }
+
+        
         if (isDialogueAllowed && !isDialogueActive)
         {
             // Dialogue is able to be started
@@ -55,28 +63,8 @@ public class NPC : MonoBehaviour
     }
 
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            UnityEngine.Debug.Log("Dialogue avalible");
-            isDialogueAllowed = true;
-            UIController.ShowDialoguePrompt(true);   // Show the interaction prompt
-        }
-    }
 
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            UnityEngine.Debug.Log("dialogue unavaliable");// Code to run when the player exits the circle collider
-            isDialogueAllowed = false;
-            UIController.ShowDialoguePrompt(false);   // Hide the interaction prompt
-        }
-    }
-
-
-
+    #region Dialogue
     private void StartDialogue()
     {
 
@@ -110,6 +98,9 @@ public class NPC : MonoBehaviour
 
     private string GetNextDialogue()
     {
+        // This gets the next entry from the dialogue list
+        // It will also set the new dialogue to the variable currentDialogue
+
         // Incrementing the dialogue index
         if (currentDialogue == null)
             dialogueIndex = 0;
@@ -129,9 +120,29 @@ public class NPC : MonoBehaviour
         
 
     }
-
+    #endregion
     
 
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            UnityEngine.Debug.Log("Dialogue avalible");
+            isDialogueAllowed = true;
+            UIController.ShowDialoguePrompt(true);   // Show the interaction prompt
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            UnityEngine.Debug.Log("dialogue unavaliable");// Code to run when the player exits the circle collider
+            isDialogueAllowed = false;
+            UIController.ShowDialoguePrompt(false);   // Hide the interaction prompt
+        }
+    }
 
     private void InitializeDialogue()
     {
