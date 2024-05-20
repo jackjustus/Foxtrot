@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Chapter 0/MeadowWalk.unity
     guid: 3555db43262514ca7a54b1add15e6349
+  - enabled: 1
+    path: Assets/Scenes/Chapter 0/BunnyEncounter.unity
+    guid: 37d0e4132862e47aaa80a437a25a2f08
   m_configObjects: {}
