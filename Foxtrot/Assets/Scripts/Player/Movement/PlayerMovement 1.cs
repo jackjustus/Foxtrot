@@ -364,7 +364,7 @@ public class PlayerMovement1 : MonoBehaviour
 		
 		if(!Repeater.isPlaying)
 		{
-			Debug.Log("bleb");
+			//Debug.Log("bleb");
             audioManager.PlayRepeater(audioManager.walking);
         }
 		
