@@ -42,7 +42,7 @@ public class UIController : MonoBehaviour
 
 
         updateReverseAnimation(ref dialoguePromptPlayInReverse, dialoguePromptPlayableDirector);
-        updateReverseAnimation(ref dialogueTextPlayInReverse, dialogueTextPlayableDirector);
+        // updateReverseAnimation(ref dialogueTextPlayInReverse, dialogueTextPlayableDirector);
     }
 
     public void BlackoutScreen(bool fadeOut) {
@@ -72,6 +72,7 @@ public class UIController : MonoBehaviour
         if (show) {
             Debug.Log("[UICTRL] Showing dialogue box");
             dialogueTextBox.SetActive(true);
+            
             dialogueTextPlayableDirector.Play();
             dialogueTextPlayInReverse = false;
         } else {

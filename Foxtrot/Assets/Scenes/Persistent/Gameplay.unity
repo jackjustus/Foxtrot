@@ -940,7 +940,7 @@ MonoBehaviour:
   dialogueText: {fileID: 231079154}
   dialogueTextBox: {fileID: 292353370}
   dialoguePromptAnimationGameObj: {fileID: 1660652039}
-  dialogueTextAnimationGameObj: {fileID: 0}
+  dialogueTextAnimationGameObj: {fileID: 1131305815}
 --- !u!4 &718272724
 Transform:
   m_ObjectHideFlags: 0
