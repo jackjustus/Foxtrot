@@ -78,11 +78,23 @@ public class PlayerMovement1 : MonoBehaviour
 	[SerializeField] private LayerMask _groundLayer;
 	#endregion
 
+	AudioSource Repeater;
+
     private void Awake()
 	{
 		RB = GetComponent<Rigidbody2D>();
 		audioManager= GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
-	}
+
+
+        AudioSource[] batchelors = audioManager.GetComponentsInChildren<AudioSource>();
+        foreach (AudioSource audio in batchelors)
+        {
+            if (audio.gameObject.name == "Repeater")
+            {
+                Repeater=audio.gameObject.GetComponent<AudioSource>();
+            }
+        }
+    }
 
 	private void Start()
 	{
@@ -348,7 +360,13 @@ public class PlayerMovement1 : MonoBehaviour
 
 		//Convert this to a vector and apply to rigidbody
 		RB.AddForce(movement * Vector2.right, ForceMode2D.Force);
-		audioManager.PlaySFX(audioManager.walking);
+
+		
+		if(!Repeater.isPlaying)
+		{
+            audioManager.PlayRepeater(audioManager.walking);
+        }
+		
 		/*
 		 * For those interested here is what AddForce() will do
 		 * RB.velocity = new Vector2(RB.velocity.x + (Time.fixedDeltaTime  * speedDif * accelRate) / RB.mass, RB.velocity.y);

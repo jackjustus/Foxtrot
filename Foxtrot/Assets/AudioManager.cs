@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     [Header("----------Audio Sources-----------")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
+    [SerializeField] AudioSource Repeater;
     // Start is called before the first frame update
 
     [Header("----------Audio Clips-----------")]
@@ -41,6 +42,12 @@ public class AudioManager : MonoBehaviour
         SFXSource.clip = clip;
         SFXSource.Play();
     }   
+
+    public void PlayRepeater(AudioClip clip)
+    {
+        Repeater.clip = clip;
+        Repeater.Play();
+    }
 
 
 }
