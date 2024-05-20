@@ -940,7 +940,7 @@ MonoBehaviour:
   dialogueText: {fileID: 231079154}
   dialogueTextBox: {fileID: 292353370}
   dialoguePromptAnimationGameObj: {fileID: 1660652039}
-  dialogueTextBoxAnimationGameObj: {fileID: 0}
+  dialogueTextAnimationGameObj: {fileID: 0}
 --- !u!4 &718272724
 Transform:
   m_ObjectHideFlags: 0
@@ -2031,6 +2031,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 2031177506}
   SFXSource: {fileID: 1897921010}
+  Repeater: {fileID: 0}
   wind: {fileID: 0}
   walking: {fileID: 0}
   forwardAttack: {fileID: 0}

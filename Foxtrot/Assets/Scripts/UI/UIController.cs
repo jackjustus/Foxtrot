@@ -41,9 +41,8 @@ public class UIController : MonoBehaviour
 
 
 
-
-        updateReverseAnimation(dialoguePromptPlayInReverse, dialoguePromptPlayableDirector);
-        updateReverseAnimation(dialogueTextPlayInReverse, dialogueTextPlayableDirector);
+        updateReverseAnimation(ref dialoguePromptPlayInReverse, dialoguePromptPlayableDirector);
+        updateReverseAnimation(ref dialogueTextPlayInReverse, dialogueTextPlayableDirector);
     }
 
     public void BlackoutScreen(bool fadeOut) {
@@ -86,7 +85,7 @@ public class UIController : MonoBehaviour
         }
     }
 
-    private void updateReverseAnimation(bool playInReverse, PlayableDirector playableDirector) {
+    private void updateReverseAnimation(ref bool playInReverse, PlayableDirector playableDirector) {
         // This enables the dialogue prompt animation to play in reverse
         if (playInReverse)
         {
