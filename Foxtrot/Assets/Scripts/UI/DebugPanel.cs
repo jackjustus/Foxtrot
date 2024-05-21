@@ -9,7 +9,7 @@ public class DebugPanel : MonoBehaviour
 
     public void Update()
     {
-        currentSceneObject.text = GameController.currentScene;
+        currentSceneObject.text = GameController.currentScene.name;
     }
 
 }

@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class GameController : MonoBehaviour
 {
 
-    public static string currentScene {get; private set;} 
+    public static Scene currentScene {get; private set;} 
 
     List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
     
@@ -20,27 +20,52 @@ public class GameController : MonoBehaviour
     {
         UIController = FindObjectOfType<UIController>();
         player = GameObject.FindGameObjectWithTag("Player");
-        currentScene = SceneManager.GetActiveScene().name;
+        currentScene = SceneManager.GetActiveScene();
 
 
 
         HideObjectsWithHiddenTag();
     }
-    public void LoadNextLevel(string sceneName)
+    public void LoadNextLevel(string sceneToLoad)
     {
         // Blackout the screen
         UIController.BlackoutScreen(true);
         
 
-        // If the target scene is not open, load it
-        LoadSceneAdditive(sceneName);
-        UnloadScene(currentScene);
+        // Loading the new scene and unloading the old one in the background
+        // After this loading is done, AfterSceneLoad() is called.
+        StartCoroutine(LoadNewScenes(currentScene, sceneToLoad));
 
-        
-        // scenesToLoad.Add(SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive));
-        // scenesToLoad.Add(SceneManager.UnloadSceneAsync(sceneName));
 
-        currentScene = sceneName;
+        // scenesToLoad.Add(SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive));
+        // scenesToLoad.Add(SceneManager.UnloadSceneAsync(currentScene));
+    }
+
+
+    private IEnumerator LoadNewScenes(Scene currentScene, string sceneToLoad) {
+
+        // The Application loads the Scene in the background as the blackout screen fades in.
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive);
+        AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(currentScene);
+
+        while (!asyncLoad.isDone || !asyncUnload.isDone)
+        {
+            yield return null;
+        }
+
+        Debug.Log("System has loaded the new scene and unloaded the old one.");
+
+        AfterSceneLoad(sceneToLoad);
+    }
+
+    private void AfterSceneLoad(string loadedSceneName) {
+
+        // The current scene is now the one that was loaded
+        currentScene = SceneManager.GetSceneByName(loadedSceneName);
+
+        // Set the new scene as the active scene
+        SceneManager.SetActiveScene(currentScene);
 
         // Update Hidden Objects in new level
         HideObjectsWithHiddenTag();
@@ -49,34 +74,12 @@ public class GameController : MonoBehaviour
         UIController.BlackoutScreen(false);
     }
 
-    public void loadSceneAdditive(string sceneName) {
-        Debug.Log("[GMCNTRL] Loading scene: " + sceneName);
-        scenesToLoad.Add(SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive));
-    }
-
-
-
-
-    private void LoadSceneAdditive(string sceneName)
-    {
-        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-    }
-
-    private void UnloadScene(string sceneName)
-    {
-        SceneManager.UnloadSceneAsync(sceneName);
-    }
-
 
     public void exitGame()
     {
         Debug.print("Exiting game...");
         Application.Quit();
     }
-
-
-
-
 
     public void HideObjectsWithHiddenTag() {
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Hidden");

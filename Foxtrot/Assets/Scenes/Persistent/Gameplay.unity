@@ -414,7 +414,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 796628675907845845, guid: 98f796d7b67ce244e8b05caa8b1134d6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -915,7 +916,6 @@ GameObject:
   m_Component:
   - component: {fileID: 718272724}
   - component: {fileID: 718272723}
-  - component: {fileID: 718272725}
   m_Layer: 0
   m_Name: UIController
   m_TagString: UIController
@@ -956,18 +956,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &718272725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 718272722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb9bb0ab6c98148bea5d0ac51b82f373, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &794921148
 GameObject:
   m_ObjectHideFlags: 0
@@ -2051,7 +2039,6 @@ GameObject:
   - component: {fileID: 1753544949}
   - component: {fileID: 1753544948}
   - component: {fileID: 1753544947}
-  - component: {fileID: 1753544951}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2145,18 +2132,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1753544951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753544946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb9bb0ab6c98148bea5d0ac51b82f373, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1772177276
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,7 +2142,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1772177278}
   - component: {fileID: 1772177277}
-  - component: {fileID: 1772177279}
   m_Layer: 5
   m_Name: AudioManager
   m_TagString: Audio
@@ -2223,18 +2197,6 @@ RectTransform:
   m_AnchoredPosition: {x: 960.00006, y: 498.06876}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1772177279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1772177276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb9bb0ab6c98148bea5d0ac51b82f373, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1858133063
 GameObject:
   m_ObjectHideFlags: 0
@@ -2321,7 +2283,6 @@ GameObject:
   - component: {fileID: 1874738568}
   - component: {fileID: 1874738567}
   - component: {fileID: 1874738566}
-  - component: {fileID: 1874738569}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -2379,18 +2340,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1874738569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1874738565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb9bb0ab6c98148bea5d0ac51b82f373, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1897921009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2782,7 +2731,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 134402019769101978, guid: 6e17cda279acc4cb39d460fbc8b741fd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2839,7 +2789,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9063693010500265477, guid: 75677ead458df4e78a75a479d21a00bf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2902,6 +2853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 122831426533476545, guid: ebef2d30ac11e4c039d340025844b57e, type: 3}
+    - {fileID: 1183575773470841804, guid: ebef2d30ac11e4c039d340025844b57e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
