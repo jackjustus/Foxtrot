@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
@@ -9,10 +10,16 @@ public class Health : MonoBehaviour
 
     private int MAX_HEALTH = 5;
 
+    public UnityEvent OnDeathEvent;
+
 
 
     // Update is called once per frame
 
+    void Awake() {
+        if (OnDeathEvent == null)
+            OnDeathEvent = new UnityEvent();  
+    }
     private void Update()
     {
     
@@ -72,6 +79,9 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
+        OnDeathEvent.Invoke();
+
+        
         UnityEngine.Debug.Log("I am Dead");
         Destroy(gameObject);
     }
