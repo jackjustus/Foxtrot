@@ -13,19 +13,25 @@ public class GameController : MonoBehaviour
     List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
     
     UIController UIController;
-    GameObject player;
-    Event LevelLoadedEvent;
+    public UnityEvent LevelFinishedLoading;
 
     void Awake()
     {
+        // Intialize helper objects
         UIController = FindObjectOfType<UIController>();
-        player = GameObject.FindGameObjectWithTag("Player");
+
+        // Intialize events
+        LevelFinishedLoading = new UnityEvent();
+
+
+        // Get the current scene for the starting position
         currentScene = SceneManager.GetActiveScene();
 
-
-
-        HideObjectsWithHiddenTag();
+        // Set up the starting scene
+        AfterSceneLoad(currentScene.name);
     }
+
+    #region Level Loading
     public void LoadNextLevel(string sceneToLoad)
     {
         // Blackout the screen
@@ -35,27 +41,26 @@ public class GameController : MonoBehaviour
         // Loading the new scene and unloading the old one in the background
         // After this loading is done, AfterSceneLoad() is called.
         StartCoroutine(LoadNewScenes(currentScene, sceneToLoad));
-
-
-        // scenesToLoad.Add(SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive));
-        // scenesToLoad.Add(SceneManager.UnloadSceneAsync(currentScene));
     }
-
 
     private IEnumerator LoadNewScenes(Scene currentScene, string sceneToLoad) {
 
         // The Application loads the Scene in the background as the blackout screen fades in.
 
+        // These lines start the loading & unloading operations.
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive);
         AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(currentScene);
 
+        // This will continue to loop until the scenes are done loading/unloading
         while (!asyncLoad.isDone || !asyncUnload.isDone)
         {
             yield return null;
         }
 
-        Debug.Log("System has loaded the new scene and unloaded the old one.");
+        // Print the scene name & inform the user that the scene has finished loading
+        Debug.Log(sceneToLoad + " has finished loading!");
 
+        // This sets up the new scene
         AfterSceneLoad(sceneToLoad);
     }
 
@@ -70,11 +75,15 @@ public class GameController : MonoBehaviour
         // Update Hidden Objects in new level
         HideObjectsWithHiddenTag();
 
+        // Trigger the levelFinishedLoading Event
+        LevelFinishedLoading.Invoke();
+
         // Unblackout
         UIController.BlackoutScreen(false);
     }
+    #endregion
 
-
+    #region Misc
     public void exitGame()
     {
         Debug.print("Exiting game...");
@@ -88,3 +97,4 @@ public class GameController : MonoBehaviour
         }
     }
 }
+    #endregion
