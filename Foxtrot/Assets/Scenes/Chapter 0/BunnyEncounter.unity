@@ -2100,8 +2100,6 @@ PlayableDirector:
     value: {fileID: 107796762}
   - key: {fileID: 544752055558685934, guid: 7e3fc7c5052b0424896527872c6acb27, type: 2}
     value: {fileID: 107796764}
-  - key: {fileID: 965023610711920387, guid: 7e3fc7c5052b0424896527872c6acb27, type: 2}
-    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &497025516
@@ -3521,7 +3519,7 @@ PrefabInstance:
       objectReference: {fileID: 596471591}
     - target: {fileID: 3717330940348115995, guid: 871806c31490449df9134140948cd02e, type: 3}
       propertyPath: playerExitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: MeadowWalk
+      value: Introduction
       objectReference: {fileID: 0}
     - target: {fileID: 7322173832871582641, guid: 871806c31490449df9134140948cd02e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4845,7 +4843,7 @@ PrefabInstance:
       objectReference: {fileID: 596471591}
     - target: {fileID: 3717330940348115995, guid: 871806c31490449df9134140948cd02e, type: 3}
       propertyPath: playerExitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Waterfall
+      value: MeadowWalk
       objectReference: {fileID: 0}
     - target: {fileID: 7322173832871582641, guid: 871806c31490449df9134140948cd02e, type: 3}
       propertyPath: m_LocalScale.x

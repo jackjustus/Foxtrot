@@ -33,7 +33,13 @@ public class GameController : MonoBehaviour
         
 
         // If the target scene is not open, load it
-        scenesToLoad.Add(SceneManager.LoadSceneAsync(sceneName));
+        LoadSceneAdditive(sceneName);
+        UnloadScene(currentScene);
+
+        
+        // scenesToLoad.Add(SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive));
+        // scenesToLoad.Add(SceneManager.UnloadSceneAsync(sceneName));
+
         currentScene = sceneName;
 
         // Update Hidden Objects in new level
@@ -48,11 +54,29 @@ public class GameController : MonoBehaviour
         scenesToLoad.Add(SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive));
     }
 
+
+
+
+    private void LoadSceneAdditive(string sceneName)
+    {
+        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+    }
+
+    private void UnloadScene(string sceneName)
+    {
+        SceneManager.UnloadSceneAsync(sceneName);
+    }
+
+
     public void exitGame()
     {
         Debug.print("Exiting game...");
         Application.Quit();
     }
+
+
+
+
 
     public void HideObjectsWithHiddenTag() {
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Hidden");
