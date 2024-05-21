@@ -9527,61 +9527,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 412804352932801773, guid: 6f04b836a39d840b7a6e9f01a6bc69ff, type: 3}
-      propertyPath: startPosY
-      value: 2.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 412804352932801773, guid: 6f04b836a39d840b7a6e9f01a6bc69ff, type: 3}
-      propertyPath: doParallaxX
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 412804352932801773, guid: 6f04b836a39d840b7a6e9f01a6bc69ff, type: 3}
-      propertyPath: doParallaxY
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 412804352932801773, guid: 6f04b836a39d840b7a6e9f01a6bc69ff, type: 3}
-      propertyPath: parallaxEffectX
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 412804352932801773, guid: 6f04b836a39d840b7a6e9f01a6bc69ff, type: 3}
-      propertyPath: parallaxEffectY
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 5596497988476547323, guid: 6f04b836a39d840b7a6e9f01a6bc69ff, type: 3}
       propertyPath: m_Name
       value: IntroductionBackground
-      objectReference: {fileID: 0}
-    - target: {fileID: 6242351282387490416, guid: 6f04b836a39d840b7a6e9f01a6bc69ff, type: 3}
-      propertyPath: startPosY
-      value: 2.98
-      objectReference: {fileID: 0}
-    - target: {fileID: 6242351282387490416, guid: 6f04b836a39d840b7a6e9f01a6bc69ff, type: 3}
-      propertyPath: doParallaxX
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6242351282387490416, guid: 6f04b836a39d840b7a6e9f01a6bc69ff, type: 3}
-      propertyPath: doParallaxY
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6242351282387490416, guid: 6f04b836a39d840b7a6e9f01a6bc69ff, type: 3}
-      propertyPath: parallaxEffectX
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6242351282387490416, guid: 6f04b836a39d840b7a6e9f01a6bc69ff, type: 3}
-      propertyPath: parallaxEffectY
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943375734166709868, guid: 6f04b836a39d840b7a6e9f01a6bc69ff, type: 3}
-      propertyPath: doParallaxX
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943375734166709868, guid: 6f04b836a39d840b7a6e9f01a6bc69ff, type: 3}
-      propertyPath: doParallaxY
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943375734166709868, guid: 6f04b836a39d840b7a6e9f01a6bc69ff, type: 3}
-      propertyPath: parallaxEffectX
-      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 8687018831294808488, guid: 6f04b836a39d840b7a6e9f01a6bc69ff, type: 3}
       propertyPath: m_LocalPosition.x
