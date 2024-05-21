@@ -6,22 +6,24 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private Transform startPosition;
     private GameObject player;
-    private GameObject gameController;
+    private GameController gameController;
     private string sceneName;
 
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        gameController = GameObject.FindGameObjectWithTag("GameController");
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         sceneName = gameObject.scene.name;
         MovePlayerToStartPosition();
+
+        gameController.HideObjectsWithHiddenTag();
     }
 
     public void LoadLevel(string levelName)
     {
         Debug.Log("[LVLMNGR] Loading next level: " + levelName);
-        gameController.GetComponent<GameController>().LoadNextLevel(levelName); // Load the next level
+        gameController.LoadNextLevel(levelName); // Load the next level
     }
 
 

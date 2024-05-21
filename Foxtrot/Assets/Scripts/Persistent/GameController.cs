@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class GameController : MonoBehaviour
 {
@@ -13,12 +14,15 @@ public class GameController : MonoBehaviour
     
     UIController UIController;
     GameObject player;
+    Event LevelLoadedEvent;
 
     void Awake()
     {
         UIController = FindObjectOfType<UIController>();
         player = GameObject.FindGameObjectWithTag("Player");
         currentScene = SceneManager.GetActiveScene().name;
+
+
 
         HideObjectsWithHiddenTag();
     }
@@ -31,6 +35,9 @@ public class GameController : MonoBehaviour
         // If the target scene is not open, load it
         scenesToLoad.Add(SceneManager.LoadSceneAsync(sceneName));
         currentScene = sceneName;
+
+        // Update Hidden Objects in new level
+        HideObjectsWithHiddenTag();
 
         // Unblackout
         UIController.BlackoutScreen(false);
@@ -47,7 +54,7 @@ public class GameController : MonoBehaviour
         Application.Quit();
     }
 
-    private void HideObjectsWithHiddenTag() {
+    public void HideObjectsWithHiddenTag() {
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Hidden");
         foreach(GameObject obj in objects) {
             obj.GetComponent<SpriteRenderer>().enabled = false;
