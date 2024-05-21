@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -22,7 +23,8 @@ public class UIController : MonoBehaviour
     [Header("Animation Elements (Dialogue Text Box)")]
     [SerializeField] private GameObject dialogueTextAnimationGameObj;       
     private PlayableDirector dialogueTextPlayableDirector;
-    private bool dialogueTextPlayInReverse = false;
+    
+    // private bool dialogueTextPlayInReverse = false;
 
 
     void Awake() {
@@ -74,9 +76,9 @@ public class UIController : MonoBehaviour
             dialogueTextBox.SetActive(true);
             
             dialogueTextPlayableDirector.Play();
-            dialogueTextPlayInReverse = false;
+            // dialogueTextPlayInReverse = false;
         } else {
-            dialogueTextPlayInReverse = true;
+            // dialogueTextPlayInReverse = true;
         }
     }
     public void SetDialogueText(string text) {

@@ -8976,7 +8976,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 790639628929917812, guid: 871806c31490449df9134140948cd02e, type: 3}
       propertyPath: m_Name
-      value: Exit Trigger (1)
+      value: Exit Trigger (Introduction)
       objectReference: {fileID: 0}
     - target: {fileID: 3717330940348115995, guid: 871806c31490449df9134140948cd02e, type: 3}
       propertyPath: playerExitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -13109,7 +13109,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 790639628929917812, guid: 871806c31490449df9134140948cd02e, type: 3}
       propertyPath: m_Name
-      value: Exit Trigger
+      value: Exit Trigger (Bunny Encounter)
       objectReference: {fileID: 0}
     - target: {fileID: 3717330940348115995, guid: 871806c31490449df9134140948cd02e, type: 3}
       propertyPath: playerExitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
