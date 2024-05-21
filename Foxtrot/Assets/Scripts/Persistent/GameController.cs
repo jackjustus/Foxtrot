@@ -47,6 +47,7 @@ public class GameController : MonoBehaviour
 
         // The Application loads the Scene in the background as the blackout screen fades in.
 
+
         // These lines start the loading & unloading operations.
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive);
         AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(currentScene);
