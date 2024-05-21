@@ -100,6 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxEffect: 0.5
+  startPosY: 0
+  doParallaxY: 0
+  parallaxEffectY: 0
 --- !u!1 &1471617990949977247
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +203,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxEffect: 0.4
+  startPosY: 0
+  doParallaxY: 0
+  parallaxEffectY: 0
 --- !u!1 &2816691470745702421
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +761,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxEffect: 0.3
+  startPosY: 3.8
+  doParallaxY: 1
+  parallaxEffectY: 0.2
 --- !u!1 &6911084544703847604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,7 +1044,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 3.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2001109354585393407}
@@ -1107,3 +1116,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxEffect: 1
+  startPosY: 2.5
+  doParallaxY: 1
+  parallaxEffectY: 0.7

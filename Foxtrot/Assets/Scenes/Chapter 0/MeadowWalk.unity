@@ -8615,6 +8615,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundClip (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6833758413474047108, guid: a89554d6c093448a09a067f96add73ab, type: 3}
+      propertyPath: m_TagString
+      value: Hidden
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
