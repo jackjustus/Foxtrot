@@ -382,12 +382,21 @@ public class PlayerMovement1 : MonoBehaviour
 
 	private void Turn()
 	{
-		//stores scale and flips the player along the x axis, 
-		Vector3 scale = transform.localScale; 
-		scale.x *= -1;
-		transform.localScale = scale;
 
-		IsFacingRight = !IsFacingRight;
+		// This is new turn code that will allow the player to turn around in a way that works with the new camera system
+		if (IsFacingRight) {
+			Vector3 rotator = new Vector3(transform.rotation.x, 180f, transform.rotation.x);
+			transform.rotation = Quaternion.Euler(rotator);
+			IsFacingRight = !IsFacingRight;
+		}
+		else
+		{
+			Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.x);
+			transform.rotation = Quaternion.Euler(rotator);
+			IsFacingRight = !IsFacingRight;
+		}
+
+
 	}
     #endregion
 

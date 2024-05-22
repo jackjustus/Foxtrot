@@ -200,5 +200,4 @@ public class CharacterController2D : MonoBehaviour
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
 
-
 }
