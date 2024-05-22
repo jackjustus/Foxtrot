@@ -11,6 +11,7 @@ public class Boss : MonoBehaviour
     [Header("Gameplay Variables")]
     [SerializeField] public int maxHealth = 5;              // The maximum health of the boss
     public int currentHealth {get; private set;}            // The current health of the boss
+    [SerializeField] public int contactDamage = 1;          // The amount of damage the boss does on contact
 
     [Header("Boss Information")]
     public string bossName;                                 // The name of the boss 
@@ -19,6 +20,12 @@ public class Boss : MonoBehaviour
     [Header("Events")]
     public UnityEvent onDeathEvent;                         // The event that will be called when the boss dies
 
+
+    public Boss() {
+        // Constructor for the Boss class
+
+        
+    }
 
 
     void Awake() {
@@ -77,7 +84,16 @@ public class Boss : MonoBehaviour
     }
     #endregion
 
-
-
-
+    #region Contact Damage
+    public void DealContactDamage(Collider2D collider)
+    {
+        // Making sure the collider is the player
+        if (collider.GetComponent<PlayerHealth>() != null)
+        {
+            // Deal damage to the player
+            PlayerHealth playerHealth = collider.GetComponent<PlayerHealth>();
+            playerHealth.Damage(contactDamage);
+        }
+    }
+    #endregion
 }
