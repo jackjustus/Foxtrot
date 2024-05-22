@@ -7,6 +7,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int maxHealth = 5;
     [SerializeField] private int currentHealth = 5;
 
+    private int invincibilityTime = 1;
+
+    private float invincibilityTimer = 0f;
+
     private HealthOverlayController healthOverlayController;
 
     void Awake() {
@@ -18,6 +22,12 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthOverlay();
 
     }
+
+    void Update()
+    {
+        invincibilityTimer += Time.deltaTime;
+    }   
+
 
     private void UpdateHealthOverlay() {
         if (healthOverlayController != null) {
@@ -36,6 +46,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void Damage(int amount)
     {
+        if(invincibilityTimer < invincibilityTime)
+        {
+            return;
+        }
 
         if (amount < 0)
         {
@@ -48,6 +62,7 @@ public class PlayerHealth : MonoBehaviour
             Die();
         }
 
+        invincibilityTimer = 0f;
 
     }
 

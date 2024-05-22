@@ -135,6 +135,12 @@ public class PlayerMovement1 : MonoBehaviour
         previousCanJump = CanJump();
 
 
+		if(_moveInput.x == 0 || !CanJump())
+		{
+			audioManager.StopRepeater();
+		}
+
+
         #region TIMERS
         LastOnGroundTime -= Time.deltaTime;
 		LastOnWallTime -= Time.deltaTime;
@@ -362,9 +368,8 @@ public class PlayerMovement1 : MonoBehaviour
 		RB.AddForce(movement * Vector2.right, ForceMode2D.Force);
 
 		
-		if(!Repeater.isPlaying)
+		if(!Repeater.isPlaying && CanJump())
 		{
-			//Debug.Log("bleb");
             audioManager.PlayRepeater(audioManager.walking);
         }
 		

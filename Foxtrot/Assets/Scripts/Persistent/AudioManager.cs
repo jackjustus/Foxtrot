@@ -49,5 +49,10 @@ public class AudioManager : MonoBehaviour
         Repeater.Play();
     }
 
+    public void StopRepeater()
+    {
+        Repeater.Stop();
+    }
+
 
 }
