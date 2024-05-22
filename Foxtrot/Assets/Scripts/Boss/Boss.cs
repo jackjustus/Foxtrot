@@ -20,6 +20,8 @@ public class Boss : MonoBehaviour
     [Header("Events")]
     public UnityEvent onDeathEvent;                         // The event that will be called when the boss dies
 
+    [Header("Debugging")]
+    [SerializeField] private bool debugEnabled = false;
 
     public Boss() {
         // Constructor for the Boss class
