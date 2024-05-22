@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,10 +9,12 @@ public class Health : MonoBehaviour
 
     [SerializeField] private int health = 5;
 
+
     private int MAX_HEALTH = 5;
 
     public UnityEvent OnDeathEvent;
-
+    [SerializeField] private bool isBoss = false;
+    [SerializeField] Boss boss;
 
 
     // Update is called once per frame
@@ -41,49 +44,62 @@ public class Health : MonoBehaviour
 
     public void Damage(int amount)
     {
-
-        if (amount < 0)
+        if (isBoss)
         {
-            throw new System.ArgumentOutOfRangeException("Cannot have negative Damage");
+            boss.Damage(amount);
         }
-        this.health -= amount;
-
-        if (health <= 0)
+        else
         {
-            Die();
-        }
+            if (amount < 0)
+            {
+                throw new System.ArgumentOutOfRangeException("Cannot have negative Damage");
+            }
+            this.health -= amount;
 
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
 
     }
 
     public void Heal(int amount)
     {
-
-        if (amount < 0)
+        if (isBoss)
         {
-            throw new System.ArgumentOutOfRangeException("Cannot have negative Healing");
-        }
-
-        bool wouldBeOverMaxHealth = health + amount > MAX_HEALTH;
-
-
-        if (wouldBeOverMaxHealth)
-        {
-            this.health = MAX_HEALTH;
+            boss.Heal(amount);
         }
         else
         {
-            this.health += amount;
-        }
+            if (amount < 0)
+            {
+                throw new System.ArgumentOutOfRangeException("Cannot have negative Healing");
+            }
 
+            bool wouldBeOverMaxHealth = health + amount > MAX_HEALTH;
+
+
+            if (wouldBeOverMaxHealth)
+            {
+                this.health = MAX_HEALTH;
+            }
+            else
+            {
+                this.health += amount;
+            }
+
+        }
     }
 
     private void Die()
     {
+
         OnDeathEvent.Invoke();
 
 
         UnityEngine.Debug.Log("I am Dead");
         Destroy(gameObject);
+
     }
 }
