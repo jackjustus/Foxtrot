@@ -20,6 +20,11 @@ public class CameraFollowObject : MonoBehaviour
     }
 
     private void Update() {
+        // Move the cameraFollowObject to the player's position
+        transform.position = playerTransform.position;
+    }
+
+    private void Update() {
         
     }
     

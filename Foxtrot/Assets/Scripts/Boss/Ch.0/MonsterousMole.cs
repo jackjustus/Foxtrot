@@ -12,17 +12,23 @@ public class MonsterousMole : Boss
         bossDescription = "A giant mole that burrows underground and attacks from below";
         
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+
+    #region Targeting Methods
+    #endregion
+
+    #region Movement Methods
+    #endregion
+
+    #region Attack Methods
+    #endregion
+
+    #region Misc Methods
+    void OnDrawGizmos()
     {
-        
+        // Draw the boss's attack range
     }
+    #endregion
 
 
 }
