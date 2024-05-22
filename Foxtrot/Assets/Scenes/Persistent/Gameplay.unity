@@ -2361,17 +2361,17 @@ MonoBehaviour:
   musicSource: {fileID: 2031177506}
   SFXSource: {fileID: 1897921010}
   Repeater: {fileID: 890695641}
-  wind: {fileID: 0}
+  wind: {fileID: 8300000, guid: 5f53b3ccd8c0577429dcdb6d00a40a06, type: 3}
   walking: {fileID: 8300000, guid: a1bcaadeaa1c6fc40942c602a4a91fef, type: 3}
   forwardAttack: {fileID: 0}
-  jump: {fileID: 0}
+  jump: {fileID: 8300000, guid: 23bc27ea23a57bc4d80a1b5d1e0fac49, type: 3}
   upAttack: {fileID: 0}
   backwardsAttack: {fileID: 0}
   downAttack: {fileID: 0}
   treeBackground: {fileID: 8300000, guid: adc3aa1cca53d4d4186d92f7d8d2c2ed, type: 3}
   waterfall: {fileID: 0}
   background: {fileID: 8300000, guid: 6fda64be3dff1ce48968d652d7c925f8, type: 3}
-  landing: {fileID: 8300000, guid: 9fe03d0c1467c6c4a8af66cb94c1a037, type: 3}
+  landing: {fileID: 8300000, guid: 4bc9d5589bc510541b7381f2eb5868bb, type: 3}
 --- !u!224 &1772177278
 RectTransform:
   m_ObjectHideFlags: 0
