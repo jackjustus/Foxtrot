@@ -18,6 +18,10 @@ public class CameraFollowObject : MonoBehaviour
 
         isFacingRight = player.IsFacingRight;
     }
+
+    private void Update() {
+        
+    }
     
 
 

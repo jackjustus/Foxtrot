@@ -16,22 +16,23 @@ public class Health : MonoBehaviour
 
     // Update is called once per frame
 
-    void Awake() {
+    void Awake()
+    {
         if (OnDeathEvent == null)
-            OnDeathEvent = new UnityEvent();  
+            OnDeathEvent = new UnityEvent();
     }
     private void Update()
     {
-    
-        
 
-        
+
+
+
         if (Input.GetKeyDown(KeyCode.H))
         {
             Heal(1);
         }
 
-        if(Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G))
         {
             Damage(1);
         }
@@ -41,18 +42,18 @@ public class Health : MonoBehaviour
     public void Damage(int amount)
     {
 
-        if(amount<0)
+        if (amount < 0)
         {
             throw new System.ArgumentOutOfRangeException("Cannot have negative Damage");
-        } 
+        }
         this.health -= amount;
 
-        if(health<=0)
+        if (health <= 0)
         {
             Die();
         }
 
-        
+
     }
 
     public void Heal(int amount)
@@ -81,7 +82,7 @@ public class Health : MonoBehaviour
     {
         OnDeathEvent.Invoke();
 
-        
+
         UnityEngine.Debug.Log("I am Dead");
         Destroy(gameObject);
     }
