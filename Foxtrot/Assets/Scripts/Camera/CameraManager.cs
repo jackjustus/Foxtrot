@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+// using System.Numerics;
 using Cinemachine;
 using UnityEngine;
 
@@ -16,9 +17,11 @@ public class CameraManager : MonoBehaviour
     public bool isLerpingYDamping { get; private set; }                     // A boolean to check if the camera is currently lerping the Y damping
     public bool lerpedFromPlayerFalling { get; set; }                       // A boolean to check if the camera has lerped from the player falling
     private Coroutine lerpTiltCoroutine;                                    // The coroutine that lerps the camera tilt
+    private Coroutine panCameraCoroutine;                                   // The coroutine that pans the camera
     private CinemachineVirtualCamera currentCamera;                        // The current active virtual camera
     private CinemachineFramingTransposer framingTransposer;                // The framing transposer of the virtual camera
     private float normTiltAmount;                                          // The normal tilt amount
+    private Vector2 startingTrackedObjectOffset;                           // The starting offset of the tracked object
     private void Awake() {
 
         // Setting the active object as the instance
@@ -37,6 +40,11 @@ public class CameraManager : MonoBehaviour
             }
         }
 
+        // Set the tilt damping amount based on the inspector value
+        normTiltAmount = framingTransposer.m_YDamping;
+
+        // Set the starting offset of the tracked object
+        startingTrackedObjectOffset = framingTransposer.m_TrackedObjectOffset;
 
     }
 
@@ -85,4 +93,62 @@ public class CameraManager : MonoBehaviour
         isLerpingYDamping = false;
     }
     #endregion
+
+    #region Pan the Camera
+    public void PanCameraOnContact(float panDistance, float panTime, PanDirection panDirection, bool panToStartingPos) {
+        panCameraCoroutine = StartCoroutine(PanCamera(panDistance, panTime, panDirection, panToStartingPos));
+    }
+
+    private IEnumerator PanCamera(float panDistance, float panTime, PanDirection panDirection, bool panToStartingPos) {
+        Vector2 endPos = Vector2.zero;
+        Vector2 startingPos = Vector2.zero;
+
+        // Handle pan from trigger
+        if (!panToStartingPos) {
+
+            // Set the vector based on direction
+            switch(panDirection) {
+                case PanDirection.Up:
+                    endPos = Vector2.up;
+                    break;
+                case PanDirection.Down:
+                    endPos = Vector2.down;
+                    break;
+                case PanDirection.Left:
+                    endPos = Vector2.left;
+                    break;
+                case PanDirection.Right:
+                    endPos = Vector2.right;
+                    break;
+                default:
+                        break;
+            }
+
+            endPos *= panDistance;
+
+            startingPos = startingTrackedObjectOffset;
+
+            endPos += startingPos;
+        }
+        // Handle the pan to starting position
+        else {
+            startingPos = framingTransposer.m_TrackedObjectOffset;
+            endPos = startingTrackedObjectOffset;
+        }
+
+        // Handle the actual panning of the camera
+        float elapsedTime = 0f;
+        while (elapsedTime < panTime) {
+
+            // Increment the timer
+            elapsedTime += Time.deltaTime;
+
+            // Lerp the position
+            Vector2 panLerp = Vector2.Lerp(startingPos, endPos, elapsedTime / panTime);
+            framingTransposer.m_TrackedObjectOffset = panLerp;
+
+            yield return null;
+        }
+    }
+    #endregion 
 }
