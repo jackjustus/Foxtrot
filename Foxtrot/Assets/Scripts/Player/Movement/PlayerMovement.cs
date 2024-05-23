@@ -83,6 +83,12 @@ public class PlayerMovement : MonoBehaviour
 	#endregion
 
 	AudioSource Repeater;
+	public float KBForce = 10f;
+	public float KBCounter;
+	public float KBTotalTime = 0.2f;
+
+	public bool KnockFromRight = false;
+
 
     private void Awake()
 	{
@@ -127,6 +133,10 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
 	{
 
+		if(KBCounter>0)
+		{
+            KBCounter -= Time.deltaTime;
+        }
 
 		animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
 
@@ -311,14 +321,31 @@ public class PlayerMovement : MonoBehaviour
 		if (isInputLocked)
 			return;
 		
-		//Handle Run
-		if (IsWallJumping)
-			Run(Data.wallJumpRunLerp);
-		else
-			Run(1);
 
-		//Handle Slide
-		if (IsSliding)
+		if(KBCounter <= 0)
+		{
+            //Handle Run
+            if (IsWallJumping)
+                Run(Data.wallJumpRunLerp);
+            else
+                Run(1);
+
+        }
+        else
+        {
+            if(KnockFromRight == true)
+			{
+				rb.velocity = new Vector2(-KBForce, KBForce);
+
+			}
+			if(KnockFromRight == false)
+			{
+				   rb.velocity = new Vector2(KBForce, KBForce);
+			}
+        }
+
+        //Handle Slide
+        if (IsSliding)
 			Slide();
     }
 

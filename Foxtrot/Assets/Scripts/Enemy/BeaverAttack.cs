@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class BeaverAttack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private int damage = 2;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerStay2D(Collider2D collider)
     {
-        
+
+
+        if (collider.GetComponent<PlayerHealth>() != null)
+        {
+            PlayerHealth health = collider.GetComponent<PlayerHealth>();
+            health.Damage(damage);
+
+
+        }
     }
 }

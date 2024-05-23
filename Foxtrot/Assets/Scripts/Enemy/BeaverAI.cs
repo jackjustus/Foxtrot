@@ -96,7 +96,7 @@ public class BeaverAI : MonoBehaviour
     void Update()
     {
 
-        timer+= Time.deltaTime;
+        
 
         if (cooldownTimer >= 1.5f)
         {

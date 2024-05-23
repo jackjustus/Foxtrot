@@ -6,6 +6,10 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 5;
     [SerializeField] private int currentHealth = 5;
+    private PlayerMovement playerMovement;
+    private GameObject player;
+
+    private Collision2D collision;
 
     private int invincibilityTime = 1;
 
@@ -15,6 +19,9 @@ public class PlayerHealth : MonoBehaviour
 
     void Awake() {
         healthOverlayController = FindObjectOfType<HealthOverlayController>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerMovement = player.GetComponent<PlayerMovement>();
+
     }
 
     void FixedUpdate() {
@@ -26,8 +33,16 @@ public class PlayerHealth : MonoBehaviour
     void Update()
     {
         invincibilityTimer += Time.deltaTime;
-    }   
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision1)
+    {
+       
+        collision = collision1;
+        
+    }
+        
+    
 
     private void UpdateHealthOverlay() {
         if (healthOverlayController != null) {
@@ -50,6 +65,18 @@ public class PlayerHealth : MonoBehaviour
         {
             return;
         }
+
+        
+        if(collision.transform.position.x <= transform.position.x)
+        {
+            playerMovement.KnockFromRight = true;
+        }
+        if(collision.transform.position.x > transform.position.x)
+        {
+            playerMovement.KnockFromRight = false;
+        }
+        Debug.Log("Player: " + transform.position.x + " Enemy: " + collision.transform.position.x);
+        playerMovement.KBCounter = playerMovement.KBTotalTime;
 
         if (amount < 0)
         {
