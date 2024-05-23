@@ -17,7 +17,7 @@ public class PlayerAttack : MonoBehaviour
 
 
     private GameObject player;
-    private PlayerMovement1 bool_script;
+    private PlayerMovement bool_script;
 
     private GameObject sprite;
     Animator animator;
@@ -36,7 +36,7 @@ public class PlayerAttack : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         sprite = GameObject.FindGameObjectWithTag("Sprite");
 
-        bool_script = player.GetComponent<PlayerMovement1>();
+        bool_script = player.GetComponent<PlayerMovement>();
 
         animator = sprite.GetComponent<Animator>();
         

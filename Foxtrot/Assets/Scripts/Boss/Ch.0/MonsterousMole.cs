@@ -6,24 +6,29 @@ public class MonsterousMole : Boss
 {
 
 
-    void Boss() {
-        // This is the constructor for the Boss class
-        // This will be called when the MonsterousMole object is created
-        // The constructor will be used to set the initial values of the MonsterousMole object
-
-
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
+    public MonsterousMole() : base() {
+        // Constructor for the MonsterousMole class
+        bossName = "Monsterous Mole";
+        bossDescription = "A giant mole that burrows underground and attacks from below";
         
     }
 
-    // Update is called once per frame
-    void Update()
+
+    #region Targeting Methods
+    #endregion
+
+    #region Movement Methods
+    #endregion
+
+    #region Attack Methods
+    #endregion
+
+    #region Misc Methods
+    void OnDrawGizmos()
     {
-        
+        // Draw the boss's attack range
     }
+    #endregion
 
 
 }
