@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     private GameObject player;
     private GameController gameController;
     private string sceneName;
+    [SerializeField] private PolygonCollider2D cameraCollider;
 
 
     void Start()
@@ -18,6 +19,9 @@ public class LevelManager : MonoBehaviour
         MovePlayerToStartPosition();
 
         gameController.HideObjectsWithHiddenTag();
+
+        // Update the camera collider
+        CameraManager.instance.SetBoundingRegion(cameraCollider);
     }
 
     public void LoadLevel(string levelName)

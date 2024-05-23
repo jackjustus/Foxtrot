@@ -7252,7 +7252,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1289812826}
-  - component: {fileID: 1289812827}
   m_Layer: 0
   m_Name: Clipping
   m_TagString: Untagged
@@ -7278,18 +7277,6 @@ Transform:
   - {fileID: 1275199939}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1289812827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289812825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4de5b62bb0d6e4b70bd4d3276cd72ad8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1290863397
 GameObject:
   m_ObjectHideFlags: 0
@@ -12683,7 +12670,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7322173832871582641, guid: 871806c31490449df9134140948cd02e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.2
+      value: 0.39
       objectReference: {fileID: 0}
     - target: {fileID: 7322173832871582641, guid: 871806c31490449df9134140948cd02e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12870,11 +12857,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2791025516983529147, guid: 67b7d326521c745e6b1e10346f923f69, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -40.35
+      value: -39.14
       objectReference: {fileID: 0}
     - target: {fileID: 2791025516983529147, guid: 67b7d326521c745e6b1e10346f923f69, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.61
+      value: 11.26
       objectReference: {fileID: 0}
     - target: {fileID: 2791025516983529147, guid: 67b7d326521c745e6b1e10346f923f69, type: 3}
       propertyPath: m_LocalPosition.z

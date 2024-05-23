@@ -483,11 +483,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2791025516983529147, guid: 67b7d326521c745e6b1e10346f923f69, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 43.3
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 2791025516983529147, guid: 67b7d326521c745e6b1e10346f923f69, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.9
+      value: 42.8
       objectReference: {fileID: 0}
     - target: {fileID: 2791025516983529147, guid: 67b7d326521c745e6b1e10346f923f69, type: 3}
       propertyPath: m_LocalPosition.z
@@ -639,6 +639,7 @@ MonoBehaviour:
   onDeathEvent:
     m_PersistentCalls:
       m_Calls: []
+  debugEnabled: 0
 --- !u!50 &1876285592
 Rigidbody2D:
   serializedVersion: 4
