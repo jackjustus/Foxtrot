@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 // using System.Numerics;
+
+// using System.Numerics;
 using Cinemachine;
 using UnityEngine;
 
@@ -151,4 +153,38 @@ public class CameraManager : MonoBehaviour
         }
     }
     #endregion 
+
+    #region Swap Cameras
+
+    public void SwapCamera(CinemachineVirtualCamera cameraFromLeft, CinemachineVirtualCamera cameraFromRight, Vector2 triggerExitDirection) {
+
+        // If the current camera is the camera from the left, and the exit was on the right, swap the cameras
+        if (currentCamera == cameraFromLeft && triggerExitDirection.x > 0f) {
+
+            // Activate the new camera
+            cameraFromRight.enabled = true;
+
+            // Deactivate the old camera
+            cameraFromLeft.enabled = false;
+
+            // Set the new camera as the current camera
+            currentCamera = cameraFromRight;
+        }
+        // The reverse scenario
+        else if (currentCamera == cameraFromRight && triggerExitDirection.x < 0f) {
+
+            // Activate the new camera
+            cameraFromLeft.enabled = true;
+
+            // Deactivate the old camera
+            cameraFromRight.enabled = false;
+
+            // Set the new camera as the current camera
+            currentCamera = cameraFromLeft;
+        }
+
+        // Update our transposer variable
+        framingTransposer = currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+    }
+    #endregion
 }
