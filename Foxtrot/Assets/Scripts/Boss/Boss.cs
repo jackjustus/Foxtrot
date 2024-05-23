@@ -23,10 +23,14 @@ public class Boss : MonoBehaviour
     [Header("Debugging")]
     [SerializeField] private bool debugEnabled = false;
 
+    // References
+    private GameObject player;                              // Reference to the player
+    private Vector3 vectorToPlayer;                           // The Vector to the player
+
     public Boss() {
         // Constructor for the Boss class
 
-        
+        if (debugEnabled) {}
     }
 
 
@@ -37,6 +41,17 @@ public class Boss : MonoBehaviour
         // Initialize Events
         if (onDeathEvent == null)
             onDeathEvent = new UnityEvent();
+
+        // Initialize Player
+        player = GameObject.FindWithTag("Player");
+    }
+
+    void FixedUpdate() {
+
+
+
+        // Update the vector to the player
+        vectorToPlayer = player.transform.position - transform.position;
     }
 
 
@@ -96,6 +111,14 @@ public class Boss : MonoBehaviour
             PlayerHealth playerHealth = collider.GetComponent<PlayerHealth>();
             playerHealth.Damage(contactDamage);
         }
+    }
+    #endregion
+
+    #region Editor Methods
+    void OnDrawGizmos()
+    {
+
+
     }
     #endregion
 }

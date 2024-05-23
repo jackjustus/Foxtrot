@@ -9,7 +9,9 @@ public class CameraControlTrigger : MonoBehaviour
     // This allows for customization of the editor that appears in the inspector for this script
     public CustomInspectorObjects customInspectorObjects;
 
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
     private Collider2D collider;
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
 
     private void Start() {
         collider = GetComponent<Collider2D>();

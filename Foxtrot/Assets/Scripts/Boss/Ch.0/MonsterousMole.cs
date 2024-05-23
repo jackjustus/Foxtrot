@@ -21,14 +21,21 @@ public class MonsterousMole : Boss
     #endregion
 
     #region Attack Methods
-    #endregion
 
-    #region Misc Methods
-    void OnDrawGizmos()
-    {
-        // Draw the boss's attack range
+    void Attack1() {
+
+    }
+
+    void Attack2() {
+
+    }
+
+    void Attack3() {
+
     }
     #endregion
+
+    
 
 
 }
