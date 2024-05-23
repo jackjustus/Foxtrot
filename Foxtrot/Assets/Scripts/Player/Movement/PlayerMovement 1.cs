@@ -410,7 +410,7 @@ public class PlayerMovement1 : MonoBehaviour
 
 		#region Perform Jump
 
-		//audioManager.PlaySFX(audioManager.jump);
+		audioManager.PlaySFX(audioManager.jump);
 		//We increase the force applied if we are falling
 		//This means we'll always feel like we jump the same amount 
 		//(setting the player's Y velocity to 0 beforehand will likely work the same, but I find this more elegant :D)

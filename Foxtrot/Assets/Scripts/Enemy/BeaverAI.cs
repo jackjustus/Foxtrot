@@ -4,19 +4,21 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.U2D;
 
-public class PorcupineAI : MonoBehaviour
+public class BeaverAI : MonoBehaviour
 {
 
 
     Animator animator;
-    
+
 
     [Header("Enemy Constants")]
     [Space]
 
-    [SerializeField] private float enemySpeed = 10f;
+    private GameObject attackArea = default;
+
+    [SerializeField] private float enemySpeed = 20f;
     [SerializeField] private float detectionRange = 200f;
-    [SerializeField] private float maxAttackRange = 8f;
+    [SerializeField] private float maxAttackRange = 2f;
     [SerializeField] private float minAttackRange = 0f;
     private Transform player;
     private Rigidbody2D rb;
@@ -34,9 +36,8 @@ public class PorcupineAI : MonoBehaviour
     //[SerializeField] private float range;
     //[SerializeField] private int damage;
 
-    [SerializeField] private Transform spinepoint;
-    [SerializeField] private GameObject spine;
-
+    private float timer = 0f;
+    private float timeToAttack = 1.5f;
 
     private float cooldownTimer = Mathf.Infinity;
 
@@ -75,7 +76,7 @@ public class PorcupineAI : MonoBehaviour
 
         animator = GetComponent<Animator>();
 
-
+        attackArea = transform.GetChild(0).gameObject;
 
         sprite = GetComponent<SpriteRenderer>();
 
@@ -95,12 +96,14 @@ public class PorcupineAI : MonoBehaviour
     void Update()
     {
 
-        if(cooldownTimer>=1.5f)
+        timer+= Time.deltaTime;
+
+        if (cooldownTimer >= 1.5f)
         {
             attacking = false;
         }
 
-        if(attacking)
+        if (attacking)
         {
             //set the rigidbody velocity to 0
             rb.velocity = new Vector2(0, rb.velocity.y);
@@ -117,6 +120,22 @@ public class PorcupineAI : MonoBehaviour
         }
 
         cooldownTimer += Time.deltaTime;
+
+
+        if (attacking)
+        {
+            
+            timer += Time.deltaTime;
+
+            if (timer >= timeToAttack)
+            {
+                timer = 0;
+                attacking = false;
+                attackArea.SetActive(attacking);
+                
+
+            }
+        }
 
 
         //animator.SetBool("isJumping", !animationIsGrounded);
@@ -145,8 +164,8 @@ public class PorcupineAI : MonoBehaviour
                     attacking = true;
                     cooldownTimer = 0;
                     animator.SetBool("isAttacking", true);
-                    StartCoroutine(RangedAttack());
-                    
+                    StartCoroutine(MeleeAttack());
+
 
                 }
                 else
@@ -173,21 +192,27 @@ public class PorcupineAI : MonoBehaviour
 
     }
 
-    private IEnumerator RangedAttack()
+    private IEnumerator MeleeAttack()
     {
+
+        Debug.Log("Flipped");
         cooldownTimer = 0;
-        
+        attacking = true;
+
+        Flip();
+
+
         yield return new WaitForSeconds(0.5f);
 
-        spine.transform.position = spinepoint.position;
-        spine.GetComponent<EnemyProjectileSpine>().ActivateProjectile();
+
         
-        
+        attackArea.SetActive(attacking);
+
     }
 
 
 
-    
+
 
 
 
@@ -243,17 +268,22 @@ public class PorcupineAI : MonoBehaviour
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
         // If the input is moving the player right and the player is facing left...
-        if (enemyToPlayer.x < 0 && m_movingRight && m_FacingRight)
+
+        if(!attacking)
         {
-            // ... flip the player.
-            Flip();
+            if (enemyToPlayer.x < 0 && m_movingRight && m_FacingRight)
+            {
+                // ... flip the player.
+                Flip();
+            }
+            // Otherwise if the input is moving the player left and the player is facing right...
+            else if (enemyToPlayer.x > 0 && !m_movingRight && !m_FacingRight)
+            {
+                // ... flip the player.
+                Flip();
+            }
         }
-        // Otherwise if the input is moving the player left and the player is facing right...
-        else if (enemyToPlayer.x > 0 && !m_movingRight && !m_FacingRight)
-        {
-            // ... flip the player.
-            Flip();
-        }
+        
 
 
 
@@ -263,7 +293,7 @@ public class PorcupineAI : MonoBehaviour
         if (m_Grounded && jump)
         {
 
-            
+
             // Add a vertical force to the player.
             m_Grounded = false;
             rb.AddForce(new Vector2(-unitToPlayer.x, m_JumpForce));
@@ -281,6 +311,8 @@ public class PorcupineAI : MonoBehaviour
     private void Flip()
     {
         // Switch the way the player is labelled as facing.
+        
+        
         m_FacingRight = !m_FacingRight;
 
 
@@ -288,6 +320,7 @@ public class PorcupineAI : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+        
     }
 
 
