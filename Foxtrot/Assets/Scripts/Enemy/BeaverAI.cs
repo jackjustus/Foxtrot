@@ -195,7 +195,6 @@ public class BeaverAI : MonoBehaviour
     private IEnumerator MeleeAttack()
     {
 
-        Debug.Log("Flipped");
         cooldownTimer = 0;
         attacking = true;
 

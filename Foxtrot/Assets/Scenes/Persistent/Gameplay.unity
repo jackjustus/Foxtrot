@@ -367,16 +367,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3730719702435152049, guid: 98f796d7b67ce244e8b05caa8b1134d6, type: 3}
+      propertyPath: KBForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3730719702435152049, guid: 98f796d7b67ce244e8b05caa8b1134d6, type: 3}
       propertyPath: cameraFollowObjectGO
       value: 
       objectReference: {fileID: 337442279}
     - target: {fileID: 4262596446877287521, guid: 98f796d7b67ce244e8b05caa8b1134d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.9
+      value: 36.4
       objectReference: {fileID: 0}
     - target: {fileID: 4262596446877287521, guid: 98f796d7b67ce244e8b05caa8b1134d6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 26.1
+      value: 14.3
       objectReference: {fileID: 0}
     - target: {fileID: 4262596446877287521, guid: 98f796d7b67ce244e8b05caa8b1134d6, type: 3}
       propertyPath: m_LocalPosition.z

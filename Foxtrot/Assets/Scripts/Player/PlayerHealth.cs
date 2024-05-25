@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
     private PlayerMovement playerMovement;
     private GameObject player;
 
-    private Collision2D collision;
+    private Collider2D collision;
 
     private int invincibilityTime = 1;
 
@@ -35,10 +35,13 @@ public class PlayerHealth : MonoBehaviour
         invincibilityTimer += Time.deltaTime;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision1)
+    private void OnTriggerEnter2D(Collider2D collision1)
     {
-       
-        collision = collision1;
+       if(collision1.gameObject.layer == 8 || collision1.gameObject.layer == 10)
+        {
+            collision = collision1;
+        }
+        
         
     }
         
@@ -66,16 +69,37 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
+
+        if (collision.transform.parent != null)
+        {
+            if (collision.transform.parent.position.x >= transform.position.x)
+            {
+                playerMovement.KnockFromRight = true;
+            }
+            if (collision.transform.parent.position.x < transform.position.x)
+            {
+                playerMovement.KnockFromRight = false;
+            }
+
+        }
+        else
+        {
+            if (collision.transform.position.x >= transform.position.x)
+            {
+                playerMovement.KnockFromRight = true;
+            }
+            if (collision.transform.position.x < transform.position.x)
+            {
+                playerMovement.KnockFromRight = false;
+            }
+        }
+
+
+
         
-        if(collision.transform.position.x <= transform.position.x)
-        {
-            playerMovement.KnockFromRight = true;
-        }
-        if(collision.transform.position.x > transform.position.x)
-        {
-            playerMovement.KnockFromRight = false;
-        }
-        Debug.Log("Player: " + transform.position.x + " Enemy: " + collision.transform.position.x);
+
+
+
         playerMovement.KBCounter = playerMovement.KBTotalTime;
 
         if (amount < 0)
