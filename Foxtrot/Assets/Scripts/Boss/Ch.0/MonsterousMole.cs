@@ -6,6 +6,12 @@ public class MonsterousMole : Boss
 {
 
 
+
+
+
+    //Timers
+    private float attack1Cooldown;
+
     public MonsterousMole() : base() {
         // Constructor for the MonsterousMole class
         bossName = "Monsterous Mole";
